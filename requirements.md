@@ -5,13 +5,13 @@
 3. Create new account
 4. Delete account
 5. Add to cart
-6. requirement
-7. requirement
-8. requirement
-9. requirement
-10. requirement
-11. requirement
-12. requirement
+6. *Add pictures for items
+7. Find items
+8. Sort by price
+9. Add item to seller store
+10. Buy item
+11. Remove item from cart
+12. User Profile
 
 ## Non-functional Requirements
 
