@@ -1,17 +1,17 @@
 ## Functional Requirements
 
-1. Login
-2. Logout
-3. Create new account
-4. Delete account
-5. Add to cart
-6. *Add pictures for items
-7. Find item
-8. Sort by price
-9. Add item to seller store
-10. Buy item
-11. Remove item from cart
-12. User Profile
+1. Login - Winson
+2. Logout - Winson
+3. Create new account - Bhagyesh
+4. Delete account - Bhagyesh
+5. Add to cart - Tejas
+6. *Add pictures for item - Bhagyesh
+7. Find item - Tejas
+8. Sort by price - Tejas
+9. Add item to seller store - Winson
+10. Buy item - Tejas
+11. Remove item from cart - Bhagyesh
+12. User Profile - Winson
 
 
 
@@ -19,7 +19,7 @@
 
 1. *UI interactive interface
 2. *Multilingual support
-3. non-functional
+3. non-functional (We are planning to add the remaining requirements later)
 4. non-functional
 
 
