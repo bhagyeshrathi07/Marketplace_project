@@ -1,20 +1,18 @@
-## Instructions
-
-
-  
-## Meetings
+ ## Meetings
 
 ###2022-04-17 at 19:00
 - Everyone attended the meeting
 - Bhagyesh
 	a) added some use cases, and functional/non-functional requirements
-	b) 
+	b) Will create a basic html/css template 
 - Winson
 	a) wrote majority of use-cases, and did some functional/non-functional requirements
-	b) 
+	b) Implementing the login/logout page
 - Tejas
 	a) updated meetings.md as well as readme.md file, also helped decide requirements.md
-	b) 
+	b) Working on add/remove from cart function
+
+- Planned out the entirety of the project, meeting times, and individual tasks.
 ###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
 
 
