@@ -4,14 +4,19 @@
   
 ## Meetings
 
-###2022-04-14 at 13:30
--Winson and Tejas attended the meeting in-person, Bhagyesh worked from home
--
-### 2022-04-15 at 13:30
+###2022-04-17 at 19:00
+- Everyone attended the meeting
+- Bhagyesh
+	a) added some use cases, and functional/non-functional requirements
+	b) 
+- Winson
+	a) wrote majority of use-cases, and did some functional/non-functional requirements
+	b) 
+- Tejas
+	a) updated meetings.md as well as readme.md file, also helped decide requirements.md
+	b) 
+###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
 
-
-
-### 2022-04-22 at 10:30
 
 
 
