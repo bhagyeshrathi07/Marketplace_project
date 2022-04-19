@@ -19,8 +19,8 @@
 
 1. *UI interactive interface
 2. *Multilingual support
-3. non-functional (We are planning to add the remaining requirements later)
-4. non-functional
+3. Mobile Responsive webpage 
+4. non-functional https://github.com/bhagyeshrathi07/Marketplace_project.git
 
 
 
