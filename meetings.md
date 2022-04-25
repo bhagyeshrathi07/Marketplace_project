@@ -13,6 +13,19 @@
 	b) Working on add/remove from cart function
 
 - Planned out the entirety of the project, meeting times, and individual tasks.
+###2022-04-24 at 19:00
+- everyone attended the meeting
+-Bhagyesh
+	a) started the project planner (gaant file), worked on initial structure of project, and made a html template
+	b) will start working on login/logout page
+- Winson
+	a) started database
+	b) will work on create new account/delete account
+- Tejas
+	a) Started user profile code
+	b) will work on add to cart/remove from cart
+
+
 ###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
 
 
