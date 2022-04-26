@@ -9,3 +9,11 @@ class RegistrationForm(FlaskForm):
 	password = PasswordField('Password', validators=[InputRequired(message="Password required"), Length(min=4, max=32, message="Password must be between 4 and 32 characters")])
 	confirm_password = PasswordField('Confirm_password', validators=[InputRequired(message="Password required"), EqualTo('password', message="Passwords must match")
 	submit_button = SubmitField('Create')
+
+	def validate_username(self, username):
+		user_object = User.query.filter_by(username=username.data).first()
+
+	if user_object:
+		raise ValidationError("Username already exist")
+
+
