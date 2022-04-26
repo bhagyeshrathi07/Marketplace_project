@@ -5,3 +5,15 @@ from flask import render_template
 @myapp_obj.route("/login")
 def loginPage():
     return render_template('home.html')
+
+
+
+
+
+
+
+
+
+@myapp_obj.route("/profile")
+def profile():
+    return render_template('profilepage.html')
