@@ -14,6 +14,7 @@
 
     <!--NAVIGATION BAR-->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
         <a class="navbar-brand" href="home.html">Flask Marketplace</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"> 
                 <span class="navbar-toggler-icon"></span>
@@ -23,9 +24,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active" >
+                    <li class="nav-item active">
                         <a class="nav-link" href="market.html">Market</a>
                     </li>
+                    <li></li>
                     <li>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -33,15 +35,23 @@
                         </form>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="home.html">Back</a>
-                        </li>
-                        <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">My Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="createAcc.html">Sign Up</a>
+                    </li>
+		                <li class="nav-item">
 			                 <a class="nav-link" href="profilepage.html">My Profile</a>
 		                </li>
                 </ul>
             </div>
+        </div>    
     </nav>
 
     <!--TABLE OF ITEMS-->
@@ -55,24 +65,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Iphone 12 Pro</td>
-            <td>$950</td>
-            <td>256GB</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Macbook Pro</td>
-            <td>$1599</td>
-            <td>13-inch 512GB, </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Ipad Air</td>
-            <td>$799</td>
-            <td>12-inch, 512GB Wifi</td>
-          </tr>
+            <!--Rows inside the table-->
+            {% for item in items %}
+                <tr>    
+                    <th scope="row">1</th>
+                    <td>{{item.name}}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>
+                        <button type="button" class="btn btn-dark">More Info</button>
+                        <button type="button" class="btn btn-dark">Add to Cart</button>
+                    </td>
+                </tr>
+            {% endfor %}    
         </tbody>
       </table>
 
