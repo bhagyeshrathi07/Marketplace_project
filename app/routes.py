@@ -1,6 +1,5 @@
 
 from app.forms import *
-from flask_login import login_url
 from flask import render_template
 from app import myapp_obj
 
