@@ -1,3 +1,4 @@
+from app.forms import *
 from flask_login import login_url
 from app import myapp_obj
 from flask import render_template, Flask, flash, redirect, url_for
