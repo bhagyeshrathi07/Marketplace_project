@@ -11,7 +11,7 @@ name = "Tejas"
 def home():
 	return render_template('home.html')
 
-@myapp_obj.route("/market") #, methods=('GET', 'POST'))
+@myapp_obj.route("/market.html") #, methods=('GET', 'POST'))
 def market():
     items = [
         {'name': 'iphone 12 Pro', 'description': '256GB', 'price': 1000},
@@ -19,11 +19,11 @@ def market():
         {'name': 'ipad pro', 'description': '256 GB WiFi', 'price': 850}]
     return render_template('market.html', items=items)
 
-@myapp_obj.route("/login", methods=('GET', 'POST'))
+@myapp_obj.route("/login.html", methods=('GET', 'POST'))
 def loginPage():
     return render_template('login.html')
   
-'''@myapp_obj.route("/signup", methods=('GET', 'POST'))
+'''@myapp_obj.route("/createAcc.html", methods=('GET', 'POST'))
 def createAccount():
 	register = RegistrationForm()
 
@@ -38,7 +38,10 @@ def createAccount():
 		return
 	return render_template('createAcc.html', form=register)'''
 
-@myapp_obj.route("/profile", methods=('GET', 'POST'))
+@myapp_obj.route("/profilepage.html", methods=('GET', 'POST'))
 def profile():
     return render_template('profilepage.html', name = name)
 
+@myapp_obj.route("/cart.html", methods=('GET', 'POST'))
+def cart():
+    return render_template('cart.html')
