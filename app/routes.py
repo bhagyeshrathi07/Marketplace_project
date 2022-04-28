@@ -1,3 +1,5 @@
+
+from app.forms import *
 from flask import render_template
 from app import myapp_obj
 
