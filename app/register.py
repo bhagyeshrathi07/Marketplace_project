@@ -7,12 +7,11 @@ from models import User
 def credentials(form, field):
 	username_entry = form.username.data
 	password_entry = field.data
-
-	user_object = User.query.filter_by(username=username.data).first>
-                if user_object in None:
-                        raise ValidationError("Username or password is incorrect")
-		elif password_entry != user_object.password:
-			raise ValidationError("Username or password is incorrect")
+	user_object = User.query.filter_by(username=username.data).first
+	if user_object in None:
+		raise ValidationError("Username or password is incorrect")
+	elif password_entry != user_object.password:
+		raise ValidationError("Username or password is incorrect")
 
 class RegistrationForm(FlaskForm):
 	username = StringField('Username', validators=[InputRequired(message="Username required"), Length(min=4, max=32, message="Username must be between 4 and 32 characters")])
