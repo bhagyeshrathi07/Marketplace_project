@@ -1,9 +1,12 @@
 from flask_login import login_url
 from app import myapp_obj
-from flask import render_template, Flask, flash, redirect
+from flask import render_template, Flask, flash, redirect, url_for
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
+
+from wtform_fields import *
+from models import *
 
 name = "Tejas"
 
@@ -21,13 +24,18 @@ def market():
 
 @myapp_obj.route("/login.html", methods=('GET', 'POST'))
 def loginPage():
-    return render_template('login.html')
-  
+	login = LoginForm()
+
+	if login.validate_on_submit():
+		return "Logged in, finally!"
+
+    	return render_template('login.html', form=login)
+
 '''@myapp_obj.route("/createAcc.html", methods=('GET', 'POST'))
 def createAccount():
 	register = RegistrationForm()
 
-	if registration.validate_on_submit():
+	if register.validate_on_submit():
 		username = register.username.data
 		password = register.password.data
 
@@ -35,7 +43,8 @@ def createAccount():
 		db.session.add(user)
 		db.session.commit()
 
-		return
+		return redirect(url_for('login')
+
 	return render_template('createAcc.html', form=register)'''
 
 @myapp_obj.route("/profilepage.html", methods=('GET', 'POST'))
