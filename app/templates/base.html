@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="market.html">Market</a>
+                        <a class="nav-link" href="{{url_for('market')}}">Market</a>
                     </li>
                     <li></li>
                     <li>
@@ -36,16 +36,16 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html">My Cart</a>
+                        <a class="nav-link" href="{{url_for('cart')}}">My Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="{{url_for('loginPage')}}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="createAcc.html">Sign Up</a>
+                        <a class="nav-link" href="{{url_for('signupPage')}}">Sign Up</a>
                     </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profilepage.html">My Profile</a>
+                            <a class="nav-link" href="{{url_for('profile')}}">My Profile</a>
                         </li>
                 </ul>
             </div>
