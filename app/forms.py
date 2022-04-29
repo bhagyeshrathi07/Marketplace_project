@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+'''from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, EqualTo, ValidationError
 from models import User
@@ -26,4 +26,4 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
 	username = StringField('username', validators=[InputRequired(message="Username required")])
 	password = StringField('password', validators=[InputRequired(message="Password required"), credentials])
-	submit = SubmitField('Login')
+	submit = SubmitField('Login')'''
