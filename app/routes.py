@@ -21,8 +21,8 @@ def market():
         {'name': 'ipad pro', 'description': '256 GB WiFi', 'price': 850}]
     return render_template('market.html', items=items, title='Market')
   
-@myapp_obj.route("/createAcc.html", methods=('GET', 'POST'))
-def createAccount():
+@myapp_obj.route("/signup.html", methods=('GET', 'POST'))
+def signupPage():
 	'''register = RegistrationForm()
 
 	if registration.validate_on_submit():
@@ -34,7 +34,7 @@ def createAccount():
 		db.session.commit()
 
 		return'''
-	return render_template('createAcc.html', title='Signup')
+	return render_template('signup.html', title='Signup')
 
 @myapp_obj.route("/profilepage.html", methods=('GET', 'POST'))
 def profile():
