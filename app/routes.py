@@ -1,5 +1,5 @@
 
-from app.forms import *
+from app.forms import RegistrationForm
 from flask import render_template
 from app import myapp_obj, db
 from app.models import Item, User
@@ -20,18 +20,8 @@ def market():
   
 @myapp_obj.route("/signup", methods=('GET', 'POST'))
 def signupPage():
-	'''register = RegistrationForm()
-
-	if registration.validate_on_submit():
-		username = register.username.data
-		password = register.password.data
-
-		user = User(username=username, password=password)
-		db.session.add(user)
-		db.session.commit()
-
-		return'''
-	return render_template('signup.html', title='Signup')
+	form = RegistrationForm()
+	return render_template('signup.html', form=form, title='Signup')
 
 @myapp_obj.route("/profilepage", methods=('GET', 'POST'))
 def profile():
