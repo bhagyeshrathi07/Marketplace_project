@@ -1,9 +1,15 @@
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 myapp_obj = Flask(__name__);
-#db = SQLAlchemy(myapp_obj);
+db = SQLAlchemy(myapp_obj);
 
-myapp_obj.config.from_mapping(SECRET_KEY = 'hr738rgh3q2[qp[2dq//2dqjd9q8/2jd2dm2d')
 
-from app import routes, models, myapp_obj
+myapp_obj.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
+myapp_obj.config['SECRET_KEY'] = '032acac8f265a4205baaa601'      #DO NOT CHANGE THIS HEXADECIMAL SECRET_KEY
+
+from app import routes
