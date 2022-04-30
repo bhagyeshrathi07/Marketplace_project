@@ -2,7 +2,7 @@
 from app.forms import RegistrationForm
 from flask import render_template, redirect, url_for
 from app import myapp_obj, db
-from app.models import Item, User
+from app.models import Item, User, Cart
 
 
 @myapp_obj.route("/", methods=('GET', 'POST'))
@@ -38,5 +38,6 @@ def profile():
 
 @myapp_obj.route("/cart", methods=('GET', 'POST'))
 def cart():
-	useritems = Item.query.all()
-	return render_template('cart.html', items=useritems, title='My Cart')
+	items = Cart.query.filter_by(userid = User.id).all()
+	return render_template('cart.html', useritems=items, title='My Cart')
+
