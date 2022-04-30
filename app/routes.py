@@ -25,7 +25,11 @@ def signupPage():
 		user_to_create = User(username=form.username.data, email_address=form.email_address.data, password_hash=form.password1.data)
 		db.session.add(user_to_create)
 		db.session.commit()
-		return redirect(url_for('market'))	
+		return redirect(url_for('market'))
+	if form.errors != {}: #If there are no errors from the validations
+		for err_msg in form.errors.values():
+				print(f'There was an error with creating a user: {err_msg}')
+
 	return render_template('signup.html', form=form, title='Signup')
 
 @myapp_obj.route("/profilepage", methods=('GET', 'POST'))
@@ -36,5 +40,4 @@ def profile():
 def cart():
 	useritems = Item.query.all()
 	return render_template('cart.html', items=useritems, title='My Cart')
-
 
