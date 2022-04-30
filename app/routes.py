@@ -40,4 +40,3 @@ def profile():
 def cart():
 	useritems = Item.query.all()
 	return render_template('cart.html', items=useritems, title='My Cart')
-
