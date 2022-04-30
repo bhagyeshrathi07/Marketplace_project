@@ -24,12 +24,26 @@ Market
                   <td>{{ item.description }}</td>
                   <td>
                       <button type="button" class="btn btn-dark">More Info</button>
-                      <button type="button" class="btn btn-dark">Add to Cart</button>
+                  </td>
+                  <td>
+                      <form action="" method="post">
+                        <input type="submit" class="btn btn-dark" value="Add to Cart" name="cartbutton"/>
+                      </form>
                   </td>
               </tr>
           {% endfor %}    
       </tbody>
     </table>
+    <!--
+                      {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {{ message }}
+                        {% endif %}
+                      {% endwith %}
+                  -->
 {% endblock content%}
 </body>
 </html>
+
+
+
