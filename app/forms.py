@@ -1,20 +1,15 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField
-from wtforms.validators import InputRequired, Length, EqualTo, ValidationError
+from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, DataRequired
 from app.models import User
 
 
 class RegistrationForm(FlaskForm):
-	username = StringField(label='Username', validators=[InputRequired(message="Username required"), Length(min=4, max=32, message="Username must be between 4 and 32 characters")])
-	email_address=StringField(label='Email')
-	password = PasswordField(label='Password', validators=[InputRequired(message="Password required"), Length(min=4, max=32, message="Password must be between 4 and 32 characters")])
-	confirm_password = PasswordField(label='Confirm password', validators=(InputRequired(message="Password required"), EqualTo('password', message="Passwords must match")))
+	username = StringField(label='Username', validators=[InputRequired(message="Username required"), Length(min=4, max=32, message="Username must be between 4 and 32 characters"), DataRequired()])
+	email_address=StringField(label='Email', validators=[DataRequired()])
+	password1 = PasswordField(label='Password', validators=[InputRequired(message="Password required"), Length(min=4, max=32, message="Password must be between 4 and 32 characters"), DataRequired()])
+	password2 = PasswordField(label='Confirm Password', validators=[InputRequired(message="Password required"), EqualTo('password1', message="Passwords must match"), DataRequired()])
 	submit = SubmitField(label='Submit')
-
-	def validate_username(self, username):
-		user_object = User.query.filter_by(username=username.data).first()
-		if user_object:
-			raise ValidationError("Username already exist")
 
 
 

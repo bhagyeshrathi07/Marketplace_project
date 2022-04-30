@@ -16,6 +16,8 @@ Sign Up
                   <h2 class="text-uppercase text-center mb-5">Sign Up</h2>
 
                   <form method="POST" class="form-register" style="color:white">
+                      {{ form.hidden_tag() }}
+
                       {{ form.username(class="form-control", placeholder="Username") }}
                       {{ form.username.label() }}
                       <br> <br>
@@ -32,16 +34,16 @@ Sign Up
                       <label class="form-label" for="form3Example3cg">Email</label>
                       </div>--> 
 
-                      {{ form.password(class="form-control", placeholder="Password") }}
-                      {{ form.password.label() }}
+                      {{ form.password1(class="form-control", placeholder="Password") }}
+                      {{ form.password1.label() }}
                       <br> <br>
                       <!--<div class="form-outline mb-4">
                       <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
                       <label class="form-label" for="form3Example4cg">Password</label>
                       </div>-->
 
-                      {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
-                      {{ form.confirm_password.label() }}
+                      {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+                      {{ form.password2.label() }}
                       <br> 
                       <!--<div class="form-outline mb-4">
                       <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
@@ -50,7 +52,7 @@ Sign Up
                       <br> <br>
                        
                       <div class="d-flex justify-content-center">
-                        {{form.submit(class="btn btn-outline-light btn-lg px-5")}}
+                        {{ form.submit(class="btn btn-outline-light btn-lg px-5 btn-primary") }}
                       </div>
                       <br>
 
