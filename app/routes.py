@@ -34,5 +34,7 @@ def profile():
 
 @myapp_obj.route("/cart", methods=('GET', 'POST'))
 def cart():
-    return render_template('cart.html', title= 'Cart')
+	useritems = Item.query.all()
+	return render_template('cart.html', items=useritems, title='My Cart')
+
 
