@@ -22,3 +22,12 @@ class Item(db.Model):
 
 	def __repr__(self):
     		return f'Item {self.name}'
+
+
+class Cart(db.model):
+	id = db.Column(db.Integer(), primary_key=True)
+	userid = db.Column(db.Integer(), db.ForeignKey('user.id'))
+	itemid = db.Column(db.Integer(), db.ForeignKey('item.id'))
+
+	def __repr__(self):
+    		return f'Item {self.name}'
