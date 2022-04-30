@@ -1,4 +1,3 @@
-
 from app.forms import RegistrationForm
 from flask import render_template
 from app import myapp_obj, db
@@ -17,7 +16,7 @@ def loginPage():
 def market():
     items = Item.query.all()
     return render_template('market.html', items=items, title='Market')
-  
+
 @myapp_obj.route("/signup", methods=('GET', 'POST'))
 def signupPage():
 	form = RegistrationForm()
