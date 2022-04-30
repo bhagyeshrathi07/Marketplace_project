@@ -1,6 +1,6 @@
 
 from app.forms import RegistrationForm
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
 
@@ -16,6 +16,13 @@ def loginPage():
 @myapp_obj.route("/market", methods=('GET', 'POST'))
 def market():
     items = Item.query.all()
+    if request.method == 'POST':
+        if request.form.get('cartbutton') == 'Add to Cart':
+            flash('Item Added to Cart!')
+        else:
+            pass # unknown
+    elif request.method == 'GET':
+        return render_template('market.html', items=items, title='Market')
     return render_template('market.html', items=items, title='Market')
   
 @myapp_obj.route("/signup", methods=['GET', 'POST'])
