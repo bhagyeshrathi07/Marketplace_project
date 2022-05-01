@@ -78,8 +78,8 @@ def cart():
 	cart = Cart.query.filter_by(userid = 1).all()
 	itemdetails = list()
 	for id2 in cart:
-	    for eachitem in Item.query.filter_by(id = id2.itemid).all():	
-		    itemdetails.append(eachitem)
+		for eachitem in Item.query.filter_by(id = id2.itemid).all():	
+			itemdetails.append(eachitem)
 	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
 
 #useritems=cart,
