@@ -1,4 +1,3 @@
-
 from app.forms import RegistrationForm, LoginForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
@@ -33,9 +32,21 @@ def logoutPage():
 @login_required
 def market():
     items = Item.query.all()
+    # username2 = form.username.data
+    # useridtemp = User.query.filter_by(id = username2).all()
+    # for i in items.id
+    #itemidtemp = 
     if request.method == 'POST':
-        if request.form.get('cartbutton') == 'Add to Cart':
+        if request.form.get('addtocartform') == 'Add to Cart':
             flash('Item Added to Cart!', category='success')
+            flash(request.form.get('userid2'))
+            userid2 = request.form.get('userid2')
+            itemid2 = request.form.get('itemid2')
+            flash(request.form.get('itemid2'))
+            cartitem = Cart(userid=userid2, itemid=itemid2)
+            db.session.add(cartitem)
+            db.session.commit()
+
         else:
             flash('There was an error, please try again', category='danger')# unknown
     elif request.method == 'GET':
@@ -64,6 +75,16 @@ def profile():
 
 @myapp_obj.route("/cart", methods=['GET', 'POST'])
 def cart():
-	items = Cart.query.filter_by(userid = User.id).all()
-	return render_template('cart.html', useritems=items, title='My Cart')
+	cart = Cart.query.filter_by(userid = 1).all()
+	itemdetails = list()
+	for id2 in cart:
+	    for eachitem in Item.query.filter_by(id = id2.itemid).all():	
+		    itemdetails.append(eachitem)
+	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
+
+#useritems=cart,
+	#query = dbsession.query(MyTable).filter(MyTable.name==u'john')
+#rows = query.statement.execute().fetchall()
+#for row in rows:
+ #   print row
 

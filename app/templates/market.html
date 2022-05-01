@@ -18,7 +18,7 @@ Market
           <!--Rows inside the table-->
           {% for item in items %}
               <tr>    
-                  <th scope="row">1</th>
+                  <th scope="row">{{item.id}}</th>
                   <td>{{item.name}}</td>
                   <td>${{ item.price }}</td>
                   <td>{{ item.description }}</td>
@@ -27,20 +27,15 @@ Market
                   </td>
                   <td>
                       <form action="" method="post">
-                        <input type="submit" class="btn btn-dark" value="Add to Cart" name="cartbutton"/>
+                        <input type="hidden" name="userid2" value="1">
+                        <input type="hidden" name="itemid2" value={{item.id}}>
+                        <input type="submit" class="btn btn-dark" value="Add to Cart" name='addtocartform'/>
                       </form>
                   </td>
               </tr>
           {% endfor %}    
       </tbody>
     </table>
-    <!--
-                      {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            {{ message }}
-                        {% endif %}
-                      {% endwith %}
-                  -->
 {% endblock content%}
 </body>
 </html>
