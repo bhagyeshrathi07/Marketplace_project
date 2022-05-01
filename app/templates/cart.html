@@ -1,5 +1,48 @@
 {% extends 'base.html' %}
 {% block title%}
-My cart
+My Cart
 {%endblock title%}
+<body>
+{% block content%}
+  <!--TABLE OF ITEMS-->
+  <table class="table table-striped table-hover table-borderless table-dark">
+      <thead>
+       <tr>
+          <th colspan="4"> Tejas has {{len}} items in the cart. </th>
+        </tr>       
+        <tr>
+          <th scope="col">Item ID</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Item Price</th>
+          <th>  </th>
+        </tr>
+      </thead>
+      <tbody>
+          <!--Rows inside the table
+          {% for cart in useritems %}
+              <tr>    
+                  <th scope="row">{{ cart.id }}</th>
+                  <td>{{ cart.userid }}</td>
+                  <td>{{ cart.itemid }}</td>
+                  <td>
+                      <button type="button" class="btn btn-dark">Buy Individually</button>
+                  </td>
+              </tr>
+          {% endfor %} -->          
+           {% for item in itemdetails %}
+              <tr>    
+                  <th scope="row">{{ item.id }}</th>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>
+                      <button type="button" class="btn btn-dark">Buy Individually</button>
+                  </td>
+              </tr>
+          {% endfor %}    
+      </tbody>
+    </table>
+    <center><button type="button" class="btn btn-dark">Checkout All</button></center>
+{% endblock content%}
+</body>
+</html>
 

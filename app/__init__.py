@@ -1,12 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 
-import os
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-myapp_obj = Flask(__name__);
-db = SQLAlchemy(myapp_obj);
+myapp_obj = Flask(__name__)
+db = SQLAlchemy(myapp_obj)
+bcrypt = Bcrypt(myapp_obj)  #flask library to hash passwords instead of storing them as it is
+login_manager = LoginManager(myapp_obj)
+login_manager.login_view = "loginPage"
+login_manager.login_message_category = "info"
+#login_manager.init_app(myapp_obj)
 
 
 myapp_obj.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
