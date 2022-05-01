@@ -45,7 +45,7 @@
                             <a class="nav-link" href="{{ url_for('profile') }}">Welcome, {{ current_user.username }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('cart') }}">My Cart</a>
+                            <a class="nav-link" href="#" onclick="document.mycart_form.submit();">My Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('logoutPage') }}">Logout</a>
@@ -70,6 +70,10 @@
 </head>  
 
 <body>
+
+  <form name="mycart_form" method="post" action="{{ url_for('cart') }}">
+      <input type="hidden" name="userid2" value="{{current_user.id}}">
+</form>
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
@@ -85,6 +89,8 @@
 {% block content %}
 
 {% endblock %}
+
+
 
 <!--BOOTSTRAP JAVASCRIPT - DO NOT DELETE-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
