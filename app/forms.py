@@ -25,6 +25,12 @@ class RegistrationForm(FlaskForm):
 	submit = SubmitField(label='Submit')
 
 
+class LoginForm(FlaskForm):
+	username = StringField('Username', validators=[InputRequired(message="Username required"), DataRequired()])
+	password = PasswordField('Password', validators=[InputRequired(message="Password required"), DataRequired()])
+	submit = SubmitField('Log In')
+
+
 
 
 
@@ -36,11 +42,8 @@ class RegistrationForm(FlaskForm):
 	if user_object in None:
 		raise ValidationError("Username or password is incorrect")
 	elif password_entry != user_object.password:
-		raise ValidationError("Username or password is incorrect")
+		raise ValidationError("Username or password is incorrect")'''
 
 
 
-class LoginForm(FlaskForm):
-	username = StringField('username', validators=[InputRequired(message="Username required")])
-	password = StringField('password', validators=[InputRequired(message="Password required"), credentials])
-	submit = SubmitField('Login')'''
+
