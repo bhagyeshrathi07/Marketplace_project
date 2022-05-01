@@ -34,16 +34,3 @@ class LoginForm(FlaskForm):
 
 
 
-
-'''def credentials(form, field):
-	username_entry = form.username.data
-	password_entry = field.data
-	user_object = User.query.filter_by(username=username.data).first()
-	if user_object in None:
-		raise ValidationError("Username or password is incorrect")
-	elif password_entry != user_object.password:
-		raise ValidationError("Username or password is incorrect")'''
-
-
-
-
