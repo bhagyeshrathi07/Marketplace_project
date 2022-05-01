@@ -32,17 +32,13 @@ def logoutPage():
 @login_required
 def market():
     items = Item.query.all()
-    # username2 = form.username.data
-    # useridtemp = User.query.filter_by(id = username2).all()
-    # for i in items.id
-    #itemidtemp = 
     if request.method == 'POST':
         if request.form.get('addtocartform') == 'Add to Cart':
             flash('Item Added to Cart!', category='success')
-            flash(request.form.get('userid2'))
+            #flash(request.form.get('userid2'))
             userid2 = request.form.get('userid2')
             itemid2 = request.form.get('itemid2')
-            flash(request.form.get('itemid2'))
+            #flash(request.form.get('itemid2'))
             cartitem = Cart(userid=userid2, itemid=itemid2)
             db.session.add(cartitem)
             db.session.commit()
@@ -52,6 +48,8 @@ def market():
     elif request.method == 'GET':
         return render_template('market.html', items=items, title='Market')
     return render_template('market.html', items=items, title='Market')
+
+
   
 @myapp_obj.route("/signup", methods=['GET', 'POST'])
 def signupPage():
@@ -74,17 +72,13 @@ def profile():
     return render_template('profilepage.html', title='My Profile')
 
 @myapp_obj.route("/cart", methods=['GET', 'POST'])
+@login_required
 def cart():
-	cart = Cart.query.filter_by(userid = 1).all()
+	userid2 = request.form.get('userid2')
+	cart = Cart.query.filter_by(userid = userid2).all()
 	itemdetails = list()
 	for id2 in cart:
 		for eachitem in Item.query.filter_by(id = id2.itemid).all():	
 			itemdetails.append(eachitem)
+			print(eachitem)
 	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
-
-#useritems=cart,
-	#query = dbsession.query(MyTable).filter(MyTable.name==u'john')
-#rows = query.statement.execute().fetchall()
-#for row in rows:
- #   print row
-

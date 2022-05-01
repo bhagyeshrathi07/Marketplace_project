@@ -5,19 +5,17 @@ from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, 
 from app.models import User
 
 
-
-
-class RegistrationForm(FlaskForm):	
+class RegistrationForm(FlaskForm):
 	def validate_username(self, username_to_check):
 		user = User.query.filter_by(username = username_to_check.data).first()
 		if user:
 			raise ValidationError('Username already exists! Please try different username.')
-	
+
 	def validate_email_address(self, email_address_to_check):
 		email_address = User.query.filter_by(email_address = email_address_to_check.data).first()
 		if email_address:
 			raise ValidationError('Email address already exists! Please try different email.')
-		
+
 	username = StringField(label='Username', validators=[InputRequired(message="Username required"), Length(min=4, max=32, message="Username must be between 4 and 32 characters"), DataRequired()])
 	email_address=StringField(label='Email', validators=[Email(message="Invalid Email address"), DataRequired()])
 	password1 = PasswordField(label='Password', validators=[InputRequired(message="Password required"), Length(min=4, max=32, message="Password must be between 4 and 32 characters"), DataRequired()])
@@ -29,8 +27,3 @@ class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[InputRequired(message="Username required"), DataRequired()])
 	password = PasswordField('Password', validators=[InputRequired(message="Password required"), DataRequired()])
 	submit = SubmitField('Log In')
-
-
-
-
-
