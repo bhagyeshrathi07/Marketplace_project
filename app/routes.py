@@ -52,8 +52,13 @@ def market():
     elif request.method == 'GET':
         return render_template('market.html', items=items, title='Market')
     return render_template('market.html', items=items, title='Market')
+<<<<<<< HEAD
+
+@myapp_obj.route("/signup", methods=('GET', 'POST'))
+=======
   
 @myapp_obj.route("/signup", methods=['GET', 'POST'])
+>>>>>>> main
 def signupPage():
 	form = RegistrationForm()
 	if form.validate_on_submit():
