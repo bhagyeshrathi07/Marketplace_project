@@ -8,7 +8,7 @@ My Cart
   <table class="table table-striped table-hover table-borderless table-dark">
       <thead>
        <tr>
-          <th colspan="4"> Tejas has {{len}} items in the cart. </th>
+          <th colspan="4"> {{ current_user.username }} has {{len}} items in the cart. </th>
         </tr>       
         <tr>
           <th scope="col">Item ID</th>
@@ -17,18 +17,7 @@ My Cart
           <th>  </th>
         </tr>
       </thead>
-      <tbody>
-          <!--Rows inside the table
-          {% for cart in useritems %}
-              <tr>    
-                  <th scope="row">{{ cart.id }}</th>
-                  <td>{{ cart.userid }}</td>
-                  <td>{{ cart.itemid }}</td>
-                  <td>
-                      <button type="button" class="btn btn-dark">Buy Individually</button>
-                  </td>
-              </tr>
-          {% endfor %} -->          
+      <tbody>        
            {% for item in itemdetails %}
               <tr>    
                   <th scope="row">{{ item.id }}</th>

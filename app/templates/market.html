@@ -27,7 +27,7 @@ Market
                   </td>
                   <td>
                       <form action="" method="post">
-                        <input type="hidden" name="userid2" value="1">
+                        <input type="hidden" name="userid2" value="{{current_user.id}}">
                         <input type="hidden" name="itemid2" value={{item.id}}>
                         <input type="submit" class="btn btn-dark" value="Add to Cart" name='addtocartform'/>
                       </form>
