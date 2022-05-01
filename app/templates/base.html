@@ -33,21 +33,37 @@
                         </form>
                     </li>
                 </ul>
-
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('cart')}}">My Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('loginPage')}}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('signupPage')}}">Sign Up</a>
-                    </li>
+                {% if current_user.is_authenticated %}
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('profile')}}">My Profile</a>
+                            <a class="nav-link" style="color: greenyellow; font-weight: bold;">
+                                <i class="fas fa-coin"></i>
+                                {{ current_user.prettier_budget }}
+                            </a>
                         </li>
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('profile') }}">Welcome, {{ current_user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('cart') }}">My Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logoutPage') }}">Logout</a>
+                        </li>
+                    </ul>
+                
+                {% else %}
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('loginPage') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('signupPage') }}">Sign Up</a>
+                        </li>
+                    </ul>
+
+                
+                {% endif %}
             </div>
         </div>    
     </nav>
