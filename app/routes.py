@@ -1,26 +1,43 @@
 
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, LoginForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
+from flask_login import login_user, logout_user, login_required
 
-
-@myapp_obj.route("/", methods=('GET', 'POST'))
+@myapp_obj.route("/", methods=['GET', 'POST'])
 def home():
 	return render_template('home.html', title='Home')
 
-@myapp_obj.route("/login", methods=('GET', 'POST'))
+@myapp_obj.route("/login", methods=['GET', 'POST'])
 def loginPage():
-    return render_template('login.html', title='Login')
+	form = LoginForm()
+	if form.validate_on_submit():
+		attempted_user = User.query.filter_by(username=form.username.data).first()
+		if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
+			login_user(attempted_user)
+			flash(f'Success logging in, Logged in as: {attempted_user.username}', category='success')
+			return redirect(url_for('market'))
+		else:
+			flash('Username or Password does not match! Please try again', category='danger')
+	return render_template('login.html', title='Login', form=form) 		
 
-@myapp_obj.route("/market", methods=('GET', 'POST'))
+@myapp_obj.route('/logout')
+def logoutPage():
+	logout_user()
+	flash("You have been logged out!", category='info')
+	return redirect(url_for("home"))
+
+
+@myapp_obj.route("/market", methods=['GET', 'POST'])
+@login_required
 def market():
     items = Item.query.all()
     if request.method == 'POST':
         if request.form.get('cartbutton') == 'Add to Cart':
-            flash('Item Added to Cart!')
+            flash('Item Added to Cart!', category='success')
         else:
-            pass # unknown
+            flash('There was an error, please try again', category='danger')# unknown
     elif request.method == 'GET':
         return render_template('market.html', items=items, title='Market')
     return render_template('market.html', items=items, title='Market')
@@ -29,9 +46,11 @@ def market():
 def signupPage():
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		user_to_create = User(username=form.username.data, email_address=form.email_address.data, password_hash=form.password1.data)
+		user_to_create = User(username=form.username.data, email_address=form.email_address.data, password=form.password1.data)
 		db.session.add(user_to_create)
 		db.session.commit()
+		login_user(user_to_create)
+		flash(f'Account created successfully! You are now logged in as {user_to_create.username}', category='success')
 		return redirect(url_for('market'))
 	if form.errors != {}: #If there are no errors from the validations
 		for err_msg in form.errors.values():
@@ -39,11 +58,11 @@ def signupPage():
 
 	return render_template('signup.html', form=form, title='Signup')
 
-@myapp_obj.route("/profilepage", methods=('GET', 'POST'))
+@myapp_obj.route("/profilepage", methods=['GET', 'POST'])
 def profile():
     return render_template('profilepage.html', title='My Profile')
 
-@myapp_obj.route("/cart", methods=('GET', 'POST'))
+@myapp_obj.route("/cart", methods=['GET', 'POST'])
 def cart():
 	items = Cart.query.filter_by(userid = User.id).all()
 	return render_template('cart.html', useritems=items, title='My Cart')
