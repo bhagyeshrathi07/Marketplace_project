@@ -9,7 +9,6 @@ bcrypt = Bcrypt(myapp_obj)  #flask library to hash passwords instead of storing 
 login_manager = LoginManager(myapp_obj)
 login_manager.login_view = "loginPage"
 login_manager.login_message_category = "info"
-#login_manager.init_app(myapp_obj)
 
 
 myapp_obj.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
