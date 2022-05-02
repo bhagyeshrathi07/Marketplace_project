@@ -59,7 +59,6 @@ class Item(db.Model):
 		self.owner = None
 		user.budget += self.price
 		db.session.commit()
-
 	def __repr__(self):
     		return f'Item {self.name}'
 
@@ -70,4 +69,4 @@ class Cart(db.Model):
 	itemid = db.Column(db.Integer(), db.ForeignKey('item.id'))
 
 	def __repr__(self):
-    		return f'Item {self.name}'
+    		return f'Cart {self.name}'

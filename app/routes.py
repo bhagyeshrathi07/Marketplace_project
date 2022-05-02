@@ -98,10 +98,26 @@ def profile():
 @login_required
 def cart():
 	userid2 = request.form.get('userid2')
-	cart = Cart.query.filter_by(userid = userid2).all()
 	itemdetails = list()
-	for id2 in cart:
-		for eachitem in Item.query.filter_by(id = id2.itemid).all():	
-			itemdetails.append(eachitem)
-			print(eachitem)
+
+	
+	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all():
+		itemdetails.append(eachitem)
+
+	if request.method == 'POST':
+		if request.form.get('removefromcartform') == 'Remove from Cart':
+			#flash('Item Removed from Cart!', category='success')
+            #flash(request.form.get('userid2'))
+			#userid2 = request.form.get('userid2')
+			#itemid2 = request.form.get('itemid2')
+			cartid2 = request.form.get('cartid2')
+
+			i = Cart.query.filter_by(id = cartid2).first()
+			db.session.delete(i)
+			db.session.commit()
+			return redirect(url_for('market'))
+		else:
+			None# unknown
+	elif request.method == 'GET':
+		return render_template('cart.html', itemdetails = itemdetails, title='My Cart')
 	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
