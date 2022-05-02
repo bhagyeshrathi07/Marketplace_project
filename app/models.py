@@ -43,7 +43,7 @@ class Item(db.Model):
 	price = db.Column(db.Integer(), nullable=False)
 	description = db.Column(db.String(length=1024), nullable=False, unique=True)
 	owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
-
+	
 	def __repr__(self):
     		return f'Item {self.name}'
 
@@ -54,4 +54,4 @@ class Cart(db.Model):
 	itemid = db.Column(db.Integer(), db.ForeignKey('item.id'))
 
 	def __repr__(self):
-    		return f'Item {self.name}'
+    		return f'Cart {self.name}'

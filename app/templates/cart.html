@@ -17,17 +17,28 @@ My Cart
           <th>  </th>
         </tr>
       </thead>
-      <tbody>        
-           {% for item in itemdetails %}
+      <tbody>   
+        {% if itemdetails %}     
+          {% for item in itemdetails %}
+
               <tr>    
-                  <th scope="row">{{ item.id }}</th>
-                  <td>{{ item.name }}</td>
+                  <th scope="row">{{ item.id }}</th> 
+                  <td>{{ item.name }}</td>        
                   <td>{{ item.price }}</td>
                   <td>
                       <button type="button" class="btn btn-dark">Buy Individually</button>
                   </td>
+                  <td>
+                    <form action="" method="post">
+                        <input type="hidden" name="userid2" value="{{current_user.id}}">
+                        <input type="hidden" name="itemid2" value={{item.id}}>
+                        <input type="hidden" name="cartid2" value={{item[0]}}>
+                        <input type="submit" class="btn btn-dark" value="Remove from Cart" name='removefromcartform'/>
+                      </form>
+                  </td>
               </tr>
-          {% endfor %}    
+          {% endfor %}  
+        {% endif %}  
       </tbody>
     </table>
     <center><button type="button" class="btn btn-dark">Checkout All</button></center>
