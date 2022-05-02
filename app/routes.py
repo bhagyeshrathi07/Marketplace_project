@@ -1,8 +1,9 @@
-from app.forms import RegistrationForm, LoginForm
+from nis import cat
+from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 def home():
@@ -31,23 +32,45 @@ def logoutPage():
 @myapp_obj.route("/market", methods=['GET', 'POST'])
 @login_required
 def market():
-    items = Item.query.all()
-    if request.method == 'POST':
-        if request.form.get('addtocartform') == 'Add to Cart':
-            flash('Item Added to Cart!', category='success')
-            #flash(request.form.get('userid2'))
-            userid2 = request.form.get('userid2')
-            itemid2 = request.form.get('itemid2')
-            #flash(request.form.get('itemid2'))
-            cartitem = Cart(userid=userid2, itemid=itemid2)
-            db.session.add(cartitem)
-            db.session.commit()
+	purchase_form = PurchaseItemForm()
+	selling_form = SellItemForm()
+	if request.method == 'POST':
+    	#purchase Item logic
+		if request.form.get('addtocartform') == 'Add to Cart':
+			flash('Item Added to Cart!', category='success')
+			#flash(request.form.get('userid2'))
+			userid2 = request.form.get('userid2')
+			itemid2 = request.form.get('itemid2')
+			#flash(request.form.get('itemid2'))
+			cartitem = Cart(userid=userid2, itemid=itemid2)
+			db.session.add(cartitem)
+			db.session.commit()
 
-        else:
-            flash('There was an error, please try again', category='danger')# unknown
-    elif request.method == 'GET':
-        return render_template('market.html', items=items, title='Market')
-    return render_template('market.html', items=items, title='Market')
+		purchased_item = request.form.get('purchased_item')
+		p_item_obj = Item.query.filter_by(name = purchased_item).first()
+		if p_item_obj:
+			if current_user.can_purchase(p_item_obj):
+				p_item_obj.buy(current_user)
+				flash(f"Congratulations! You purchased {p_item_obj.name}", category='success')
+			else:
+				flash(f"Not enough money to purchase {p_item_obj.name}", category='danger')
+		#sell Item logic
+		sold_item = request.form.get('sold_item')
+		s_item_obj = Item.query.filter_by(name = sold_item).first()
+		if s_item_obj:
+			if current_user.can_sell(s_item_obj):
+				s_item_obj.sell(current_user)
+				flash(f"Congratulations! You sold {s_item_obj.name} back to market!", category='success')
+			else:
+				flash(f"Something went wrong with selling {s_item_obj.name}", category="danger")
+		return redirect(url_for('market'))		
+
+	if request.method == 'GET':
+		items = Item.query.filter_by(owner=None)
+		owned_items = Item.query.filter_by(owner = current_user.id)
+		return render_template('market.html', items=items, purchase_form=purchase_form, selling_form = selling_form, title='Market', owned_items = owned_items)
+
+	
 
 
   
