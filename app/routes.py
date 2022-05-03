@@ -1,4 +1,5 @@
-from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm
+from crypt import methods
+from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchItemForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
@@ -8,6 +9,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 def home():
 	return render_template('home.html', title='Home')
 
+#Log In page
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def loginPage():
 	form = LoginForm()
@@ -21,13 +23,14 @@ def loginPage():
 			flash('Username or Password does not match! Please try again', category='danger')
 	return render_template('login.html', title='Login', form=form) 		
 
+#Log out 
 @myapp_obj.route('/logout')
 def logoutPage():
 	logout_user()
 	flash("You have been logged out!", category='info')
 	return redirect(url_for("home"))
 
-
+#Market Page
 @myapp_obj.route("/market", methods=['GET', 'POST'])
 @login_required
 def market():
@@ -72,7 +75,7 @@ def market():
 	
 
 
-  
+#Sign Up page  
 @myapp_obj.route("/signup", methods=['GET', 'POST'])
 def signupPage():
 	form = RegistrationForm()
@@ -89,32 +92,19 @@ def signupPage():
 
 	return render_template('signup.html', form=form, title='Signup')
 
-
-
+#Profile Page
 @myapp_obj.route("/profilepage", methods=['GET', 'POST'])
 def profile():
-	if request.method == 'POST':
-		if request.form.get('deleteprofile') == 'Delete Profile':
-			flash('Item Added to Cart!', category='success')
-			userid2 = request.form.get('userid2')
-			u = User.query.filter_by(id = userid2).first()
-			db.session.delete(u)
-			db.session.commit()
-			return redirect(url_for('logoutPage'))
-		else:
-			None# unknown
-	elif request.method == 'GET':
-		return render_template('profilepage.html', title='My Profile')
-		return render_template('profilepage.html', title='My Profile')
+    return render_template('profilepage.html', title='My Profile')
 
-
-
+#CART page
 @myapp_obj.route("/cart", methods=['GET', 'POST'])
 @login_required
 def cart():
 	userid2 = request.form.get('userid2')
 	itemdetails = list()
 
+	
 	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all():
 		itemdetails.append(eachitem)
 
@@ -126,8 +116,8 @@ def cart():
 			#itemid2 = request.form.get('itemid2')
 			cartid2 = request.form.get('cartid2')
 
-			c = Cart.query.filter_by(id = cartid2).first()
-			db.session.delete(c)
+			i = Cart.query.filter_by(id = cartid2).first()
+			db.session.delete(i)
 			db.session.commit()
 			return redirect(url_for('market'))
 		else:
@@ -137,20 +127,16 @@ def cart():
 	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
 
 
+#pass stuff to navbar
 @myapp_obj.context_processor
 def base():
-	form = SearchForm()
+	form = SearchItemForm()
 	return dict(form=form)
 
-@myapp_obj.route('/search', methods=["POST"])
+#Search Page
+@myapp_obj.route("/search", methods=['POST'])
 def search():
-	form = SearchForm()
-	searcheditems = Item.query
+	form = SearchItemForm()
 	if form.validate_on_submit():
-		item_searched = form.searched.data
-		#flash(item_searched)
-		#searcheditems = searcheditems.filter(Item.name.like('%' + item_searched + '%'))
-		searcheditems = Item.query.filter_by(name = item_searched).all()
-		#searcheditems = searcheditems.order_by(Item.name).all
-		#flash(searcheditems)
-		return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
+		db.searched = form.searched.data
+		return render_template("search.html", form = form, searched = db.searched)
