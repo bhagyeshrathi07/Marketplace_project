@@ -95,16 +95,22 @@ def signupPage():
 def profile():
 	if request.method == 'POST':
 		if request.form.get('deleteprofile') == 'Delete Profile':
-			flash('Item Added to Cart!', category='success')
+			
+
 			userid2 = request.form.get('userid2')
 			u = User.query.filter_by(id = userid2).first()
+
+			usercart = db.session.query(Cart).filter(Cart.userid == userid2).delete()
+
+			#db.session.delete(usercart)
 			db.session.delete(u)
 			db.session.commit()
+
+			flash('Profile Deleted!', category='success')
 			return redirect(url_for('logoutPage'))
 		else:
 			None# unknown
 	elif request.method == 'GET':
-		return render_template('profilepage.html', title='My Profile')
 		return render_template('profilepage.html', title='My Profile')
 
 
@@ -150,7 +156,7 @@ def search():
 		item_searched = form.searched.data
 		#flash(item_searched)
 		#searcheditems = searcheditems.filter(Item.name.like('%' + item_searched + '%'))
-		searcheditems = Item.query.filter_by(name = item_searched).all()
+		searcheditems = Item.query.filter_by(name = item_searched).first()
 		#searcheditems = searcheditems.order_by(Item.name).all
 		#flash(searcheditems)
 		return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
