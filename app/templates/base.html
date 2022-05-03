@@ -27,9 +27,9 @@
                     </li>
                     <li></li>
                     <li>
-                        <form method= "POST" action="{{url_for('search')}}" class="d-flex">
+                        <form method="POST" action="{{ url_for('search') }}" class="d-flex">
                             {{ form.hidden_tag() }}
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search", name = "searched">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </form>
                     </li>
@@ -38,7 +38,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" style="color: greenyellow; font-weight: bold;">
-                                <i class="fas fa-coin"> </i>
+                                <i class="fas fa-coin"></i>
                                 {{ current_user.prettier_budget }}
                             </a>
                         </li>
