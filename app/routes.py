@@ -115,7 +115,6 @@ def cart():
 	userid2 = request.form.get('userid2')
 	itemdetails = list()
 
-	
 	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all():
 		itemdetails.append(eachitem)
 
