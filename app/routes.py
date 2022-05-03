@@ -140,3 +140,4 @@ def search():
 	if form.validate_on_submit():
 		db.searched = form.searched.data
 		return render_template("search.html", form = form, searched = db.searched)
+
