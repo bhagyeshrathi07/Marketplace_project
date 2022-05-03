@@ -1,5 +1,4 @@
-from nis import cat
-from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm
+from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
@@ -90,9 +89,25 @@ def signupPage():
 
 	return render_template('signup.html', form=form, title='Signup')
 
+
+
 @myapp_obj.route("/profilepage", methods=['GET', 'POST'])
 def profile():
-    return render_template('profilepage.html', title='My Profile')
+	if request.method == 'POST':
+		if request.form.get('deleteprofile') == 'Delete Profile':
+			flash('Item Added to Cart!', category='success')
+			userid2 = request.form.get('userid2')
+			u = User.query.filter_by(id = userid2).first()
+			db.session.delete(u)
+			db.session.commit()
+			return redirect(url_for('logoutPage'))
+		else:
+			None# unknown
+	elif request.method == 'GET':
+		return render_template('profilepage.html', title='My Profile')
+		return render_template('profilepage.html', title='My Profile')
+
+
 
 @myapp_obj.route("/cart", methods=['GET', 'POST'])
 @login_required
@@ -112,8 +127,8 @@ def cart():
 			#itemid2 = request.form.get('itemid2')
 			cartid2 = request.form.get('cartid2')
 
-			i = Cart.query.filter_by(id = cartid2).first()
-			db.session.delete(i)
+			c = Cart.query.filter_by(id = cartid2).first()
+			db.session.delete(c)
 			db.session.commit()
 			return redirect(url_for('market'))
 		else:
@@ -121,3 +136,22 @@ def cart():
 	elif request.method == 'GET':
 		return render_template('cart.html', itemdetails = itemdetails, title='My Cart')
 	return render_template('cart.html', itemdetails = itemdetails, title='My Cart', len = len(itemdetails) )
+
+
+@myapp_obj.context_processor
+def base():
+	form = SearchForm()
+	return dict(form=form)
+
+@myapp_obj.route('/search', methods=["POST"])
+def search():
+	form = SearchForm()
+	searcheditems = Item.query
+	if form.validate_on_submit():
+		item_searched = form.searched.data
+		#flash(item_searched)
+		#searcheditems = searcheditems.filter(Item.name.like('%' + item_searched + '%'))
+		searcheditems = Item.query.filter_by(name = item_searched).all()
+		#searcheditems = searcheditems.order_by(Item.name).all
+		#flash(searcheditems)
+		return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
