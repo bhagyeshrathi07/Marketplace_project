@@ -12,7 +12,10 @@
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Change Password</button>
 <br>
-<button>Delete Account</button>
+  <form action="" method="post">
+      <input type="hidden" name="userid2" value="{{current_user.id}}">
+      <input type="submit" class="btn btn-dark" value="Delete Profile" name='deleteprofile'/>
+  </form>
 <!-- The Modal -->
 <div id="myModal" class="modal">
 

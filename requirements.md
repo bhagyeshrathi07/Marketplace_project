@@ -1,16 +1,16 @@
 ## Functional Requirements
 
-1. Login - Winson
-2. Logout - Winson
+1. Login - Bhagyesh
+2. Logout - Bhagyesh
 3. Create new account - Bhagyesh
-4. Delete account - Bhagyesh
+4. Delete account - Tejas
 5. Add to cart - Tejas
-6. *Add pictures for item - Bhagyesh
+6. *Add pictures for item - winson
 7. Find item - Tejas
 8. Sort by price - Tejas
-9. Add item to seller store - Winson
-10. Buy item - Tejas
-11. Remove item from cart - Bhagyesh
+9. Add item to seller store - Bhagyesh
+10. Buy item - Bhagyesh
+11. Remove item from cart - Tejas
 12. User Profile - Winson
 
 
