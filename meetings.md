@@ -56,6 +56,19 @@
 	how we're going to approach this project. Instead of strictly following our gantt's chart, we agreed on working at our own paces. This includes
 	working on other files, not asiggned. After discussion, we made sure there were no curernt bugs/errors.
 
+###2022-05-02 at 20:00
+-Everyone attended the meeting (online)
+-Bhagyesh
+	a) Finished with login and logout, and added purchasing and selling.
+	b) Will work on the UI of the website.
+-Winson
+	a) Updated meetings.md.
+	b) Will work on mkdocs and 
+-Tejas
+	a) Finished implementing funtionality for adding to and removing from cart, 
+	b) Will work on finding items on the search bar.
+- Updated gantt chart, completed login and logout, create account and delete account, user profile, add and remove to cart, buy items, and add item to sell.
+
 ###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
 
 
