@@ -2,22 +2,20 @@
 <body>
 
 {%block content%}	
-<center>
 <h1>{{ current_user.username }}</h1> 
 <br>
-<p>My Items</p><br>
 
 <div class="changediv">
 <br>
-
- <form action="" method="post">
-      <input type="hidden" name="userid2" value="{{current_user.id}}">
-      <input type="submit" class="btn btn-dark" value="Change Password" name='changepassword'/>
-  </form>
+<form action="" method="post">
+    <input type="hidden" name="userid2" value="{{current_user.id}}">
+    <input type="submit" class="btn btn-outline-dark" value="Change Password" name='changepassword'/>
+</form>
 <br>
+
   <form action="" method="post">
       <input type="hidden" name="userid2" value="{{current_user.id}}">
-      <input type="submit" class="btn btn-dark" value="Delete Profile" name='deleteprofile'/>
+      <input type="submit" class="btn btn-outline-dark" value="Delete Profile" name='deleteprofile'/>
   </form>
 
 
