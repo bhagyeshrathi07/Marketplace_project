@@ -14,33 +14,33 @@ Sign Up
               <div class="card-body p-5 text-center"> 
     
               <div class="mb-md-5 mt-md-4 pb-5">
-                  <h2 class="text-uppercase text-center mb-5">Sign Up</h2>
+                  <h2 class="shadow-lg p-3 mb-5 bg-body rounded" class="text-uppercase text-center mb-5">Sign Up</h2>
 
                   <form method="POST" class="form-register" style="color:white">
                       {{ form.hidden_tag() }}
 
-                      {{ form.username(class="form-control", placeholder="Username") }}
+                      {{ form.username(class="shadow-lg p-3 mb-2 form-control", placeholder="Username") }}
                       {{ form.username.label() }}
                       <br> <br>
 
-                      {{ form.email_address(class="form-control", placeholder="Email") }}
+                      {{ form.email_address(class="shadow-lg p-3 mb-2 form-control", placeholder="Email") }}
                       {{ form.email_address.label() }}
                       <br> <br>
 
-                      {{ form.password1(class="form-control", placeholder="Password") }}
+                      {{ form.password1(class="shadow-lg p-3 mb-2 form-control", placeholder="Password") }}
                       {{ form.password1.label() }}
                       <br> <br>
 
-                      {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+                      {{ form.password2(class="shadow-lg p-3 mb-2 form-control", placeholder="Confirm Password") }}
                       {{ form.password2.label() }}
                       <br> <br> <br>
                        
                       <div class="d-flex justify-content-center">
-                        {{ form.submit(class="btn btn-outline-light btn-lg px-5") }}
+                        {{ form.submit(class="shadow-lg p-2 mb-2 bg-body btn btn-light btn-lg px-5") }}
                       </div>
                       <br>
 
-                      <p class="mb-0">Already have an account? <a href="{{ url_for('loginPage') }}"
+                      <p class="shadow-lg p-3 mb-0 bg-body rounded">Already have an account? <a href="{{ url_for('loginPage') }}"
                           class="text-white-50 fw-bold"><u>Log in</u></a></p>
 
                   </form>

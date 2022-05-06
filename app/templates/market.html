@@ -31,17 +31,17 @@ Market
                 <td>${{ item.price }}</td>
                 <td>{{ item.description }}</td>
                 <td>
-                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">More Info</button>
+                  <button type="button" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">More Info</button>
                 </td>
                 <td>
                   <form action="" method="post">
                     <input type="hidden" name="userid2" value="{{current_user.id}}">
                     <input type="hidden" name="itemid2" value={{item.id}}>
-                    <input type="submit" class="btn btn-dark" value="Add to Cart" name='addtocartform'/>
+                    <input type="submit" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" value="Add to Cart" name='addtocartform'/>
                   </form>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#Modal-ConfirmPurchase-{{ item.id }}">Buy this Product</button>
+                  <button type="button" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" data-toggle="modal" data-target="#Modal-ConfirmPurchase-{{ item.id }}">Buy this Product</button>
                 </td>
             </tr>
             {% endfor %}    
