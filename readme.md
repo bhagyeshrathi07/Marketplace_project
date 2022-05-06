@@ -54,6 +54,8 @@ or click "Checkout All" to purchase all items.
 
 
 ## Technologies
+Front End: Bootstrap, HTML & CSS
+Back End: Python, Flask, SQLite (SQLalchemy)
 
 
 
