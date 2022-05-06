@@ -38,3 +38,9 @@ class SellItemForm(FlaskForm):
 class SearchForm(FlaskForm):
 	searched = StringField('Searched', validators=[DataRequired()])
 	submit = SubmitField('Submit')
+
+
+class PasswordForm(FlaskForm):
+	currentpass = PasswordField(label='Enter Current Password', validators=[InputRequired(message="Password required"), DataRequired()]) 
+	newpass = PasswordField(label='Enter New Password', validators=[InputRequired(message="Password required"), Length(min=4, max=32, message="Password must be between 4 and 32 characters"), DataRequired()])
+	submit = SubmitField(label='Submit')

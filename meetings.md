@@ -4,7 +4,8 @@
 - Everyone attended the meeting (online)
 - Bhagyesh
 	a) Added some use cases, and functional/non-functional requirements
-	b) Will create a basic html/css template 
+	b) Will create a basic html/css template
+	c) create navbar and basic style of html
 - Winson
 	a) Wrote majority of use-cases, and did some functional/non-functional requirements
 	b) Implementing the login/logout page
@@ -31,10 +32,11 @@
 - Everyone attened the meeting (in-person)
 - Bhagyesh
 	a) Added html files for our website.
-	b) Will work on login/logout and use bootstrap in html files.
+	b) Will work on login/logout, signup, market and use bootstrap in html files.
+	c) create database and connect it with market page.
 - Winson
-	a) Started wokring on registration forms and adding to databases.
-	b) Will work on finishing registration.
+	a) Started wokring on registration forms.
+	b) Handle meetings and other documentation files
 -Tejas
 	a) Added html for user profile.
 	b) Will work on adding items to cart.
@@ -44,17 +46,29 @@
 ###2022-04-29 at 16:00
 - Everyone attended the meeting (online)
 - Bhagyesh
-	a) Optimizing, adding, and editting most files.
-	b) Continue working on login, while also adding additional things to other files.
+	a) finishing buying in market and create sellers page in market.
+	b) Continue working on market page while also adding additional things to other files.
+	c) finished signup and login/logout
 - Winson
-	a) Finished with registration form.
-	b) Will work on mkdocs and monitoring meetings.md and readme.md
+	a) Will work on mkdocs and monitoring meetings.md and readme.md
 - Tejas
-	a) Finished user profile and setting up navbar.
-	b) Will work on adding and deleting from the cart.
+	a) Will work on adding and deleting from the cart.
 - In the meeting, we went over our gantt's chart and talked about what we have and what we should work on next. In addition, we discussed how
 	how we're going to approach this project. Instead of strictly following our gantt's chart, we agreed on working at our own paces. This includes
 	working on other files, not asiggned. After discussion, we made sure there were no curernt bugs/errors.
+
+###2022-05-02 at 20:00
+-Everyone attended the meeting (online)
+-Bhagyesh
+	a) Finished with login and logout, and added purchasing and selling.
+	b) Will work on the UI of the website.
+-Winson
+	a) Updated meetings.md.
+	b) Will work on mkdocs and 
+-Tejas
+	a) Finished implementing funtionality for adding to and removing from cart, 
+	b) Will work on finding items on the search bar.
+- Updated gantt chart, completed login and logout, create account and delete account, user profile, add and remove to cart, buy items, and add item to sell.
 
 ###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
 

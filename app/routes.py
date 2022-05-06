@@ -1,4 +1,4 @@
-from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm
+from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm, PasswordForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
@@ -95,16 +95,24 @@ def signupPage():
 def profile():
 	if request.method == 'POST':
 		if request.form.get('deleteprofile') == 'Delete Profile':
-			flash('Item Added to Cart!', category='success')
+			
+
 			userid2 = request.form.get('userid2')
 			u = User.query.filter_by(id = userid2).first()
+
+			usercart = db.session.query(Cart).filter(Cart.userid == userid2).delete()
+
+			#db.session.delete(usercart)
 			db.session.delete(u)
 			db.session.commit()
+
+			flash('Profile Deleted!', category='success')
 			return redirect(url_for('logoutPage'))
+		if request.form.get('changepassword') == 'Change Password':
+			return redirect(url_for('changepassword'))
 		else:
 			None# unknown
 	elif request.method == 'GET':
-		return render_template('profilepage.html', title='My Profile')
 		return render_template('profilepage.html', title='My Profile')
 
 
@@ -150,7 +158,25 @@ def search():
 		item_searched = form.searched.data
 		#flash(item_searched)
 		#searcheditems = searcheditems.filter(Item.name.like('%' + item_searched + '%'))
-		searcheditems = Item.query.filter_by(name = item_searched).all()
+		searcheditems = Item.query.filter_by(name = item_searched).first()
 		#searcheditems = searcheditems.order_by(Item.name).all
 		#flash(searcheditems)
 		return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
+
+
+@myapp_obj.route('/changepassword', methods=["GET", "POST"])
+def changepassword():
+	form = PasswordForm()
+	if form.validate_on_submit():
+		currentpass = form.currentpass.data
+		newpass = form.newpass.data 
+		userid2 = request.form.get('userid2')
+		u = User.query.filter_by(id = userid2).first()
+		if u.check_password_correction(currentpass):
+			u.password = form.newpass.data
+			db.session.add(u)
+			db.session.commit()
+			flash("Your Password Has Been Changed")
+			return render_template("changepassword.html", form=form)
+		return render_template("changepassword.html", form=form)
+	return render_template("changepassword.html", form=form)
