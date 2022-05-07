@@ -7,13 +7,39 @@ Search
 
 <br/>
 <h2>You Searched For... {{ item_searched }}</h2>
-  
-	{% for item in searched_items %}
-		<tr> 
-            <th scope="row">{{item.name}}</th>     
-		</tr>
+   	<table class="table table-striped table-hover table-borderless table-dark">
+        <thead>
+          <tr>
+            <!--Columns In Table-->
+            <th scope="col">Id</th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <!--Rows inside the table-->
+            {% for item in searcheditems %}
+            <tr>    
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name}}</td>
+                <td>${{ item.price }}</td>
+                <td>{{ item.description }}</td>
+                <td>
+                  <form action="/search" method="post">
+                    <input type="hidden" name="userid2" value="{{current_user.id}}">
+                    <input type="hidden" name="itemid2" value={{item.id}}>
+                    <input type="text" name="searched" value={{item_searched}}>
+                    <input type="submit" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" value="Add to Cart" name='addtocartform'/>
+                  </form>
+                </td>
+            </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
 
-    {% endfor %}
+
 
 {% endblock content%}
 </body>
