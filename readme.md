@@ -1,5 +1,19 @@
 # BTW Marketplace
 
+# Table of contents
+* [Important Libraries to Download] (#libraries)
+* [How to Run] (#how-to-run)
+* [Website info](#website-info)
+* [Home](#home)
+* [Navigation bar](#navigation-bar)
+* [User profile](#user-profile)
+* [Search items](#search-items)
+* [Manage items](#manage-items)
+* [Sell items](#sell-items)
+* [Technologies](#technologies)
+* [Contributors](#contributors)
+
+
 # Important Libraries to Download (Type the commands in terminal)
 * make sure you have lates python and pip installed if not download it from: https://www.python.org/downloads/ OR go to terminal and type:
     * Linux: sudo apt-get install python3
@@ -23,16 +37,7 @@
     * run run.py
     * click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
 
-# Table of contents
-* [Website info](#website-info)
-* [Home](#home)
-* [Navigation bar](#navigation-bar)
-* [User profile](#user-profile)
-* [Search items](#search-items)
-* [Manage items](#manage-items)
-* [Sell items](#sell-items)
-* [Technologies](#technologies)
-* [Contributors](#contributors)
+
 
 
 # Website info
