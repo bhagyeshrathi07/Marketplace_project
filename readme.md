@@ -1,8 +1,8 @@
 # BTW Marketplace
 
 # Table of contents
-* [Important Libraries to Download] (#libraries)
-* [How to Run] (#how-to-run)
+* [Important Libraries to Download] (#Important Libraries to Download )
+* [How to Run] (#How To Run)
 * [Website info](#website-info)
 * [Home](#home)
 * [Navigation bar](#navigation-bar)
@@ -76,6 +76,7 @@ or click "Checkout All" to purchase all items.
 
 
 ### Sell items
+After you buy item from market you will see owned items on the right section of the market page. To sell them click on the sell product button on owned items section and it will be sold after you confirm the sell.
 
 
 
