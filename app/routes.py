@@ -11,7 +11,7 @@ def home():
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def loginPage():
 	form = LoginForm()
-	if form.validate_on_submit():
+	if form.validate_on_submit():	#check if submit is clicked
 		attempted_user = User.query.filter_by(username=form.username.data).first()
 		if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
 			login_user(attempted_user)
@@ -31,10 +31,10 @@ def logoutPage():
 @myapp_obj.route("/market", methods=['GET', 'POST'])
 @login_required
 def market():
-	purchase_form = PurchaseItemForm()
-	selling_form = SellItemForm()
+	purchase_form = PurchaseItemForm()  # purchase form from forms.py
+	selling_form = SellItemForm()		# sell form from forms.py
 	if request.method == 'POST':
-    	#purchase Item logic
+    	#add to cart logic
 		if request.form.get('addtocartform') == 'Add to Cart':
 			flash('Item Added to Cart!', category='success')
 			#flash(request.form.get('userid2'))
@@ -44,29 +44,31 @@ def market():
 			cartitem = Cart(userid=userid2, itemid=itemid2)
 			db.session.add(cartitem)
 			db.session.commit()
-
+		
+		#purchase Item logic
 		purchased_item = request.form.get('purchased_item')
-		p_item_obj = Item.query.filter_by(name = purchased_item).first()
-		if p_item_obj:
-			if current_user.can_purchase(p_item_obj):
-				p_item_obj.buy(current_user)
-				flash(f"Congratulations! You purchased {p_item_obj.name}", category='success')
+		p_item_obj = Item.query.filter_by(name = purchased_item).first()  
+		if p_item_obj:	#check if item exists in market
+			if current_user.can_purchase(p_item_obj): 	#check if current logged in user can buy it
+				p_item_obj.buy(current_user)	#if he can user buys object
+				flash(f"Congratulations! You purchased {p_item_obj.name}", category='success')	#flash success message
 			else:
-				flash(f"Not enough money to purchase {p_item_obj.name}", category='danger')
+				flash(f"Not enough money to purchase {p_item_obj.name}", category='danger')	#else flash error message
+				
 		#sell Item logic
 		sold_item = request.form.get('sold_item')
 		s_item_obj = Item.query.filter_by(name = sold_item).first()
-		if s_item_obj:
-			if current_user.can_sell(s_item_obj):
-				s_item_obj.sell(current_user)
-				flash(f"Congratulations! You sold {s_item_obj.name} back to market!", category='success')
+		if s_item_obj: #check if item owned by user
+			if current_user.can_sell(s_item_obj):	#check if current logged in user can sell it
+				s_item_obj.sell(current_user)	#if he can sell it
+				flash(f"Congratulations! You sold {s_item_obj.name} back to market!", category='success') #show success message
 			else:
-				flash(f"Something went wrong with selling {s_item_obj.name}", category="danger")
+				flash(f"Something went wrong with selling {s_item_obj.name}", category="danger") #else show error message and redirect to market
 		return redirect(url_for('market'))		
 
 	if request.method == 'GET':
-		items = Item.query.filter_by(owner=None)
-		owned_items = Item.query.filter_by(owner = current_user.id)
+		items = Item.query.filter_by(owner=None) #query all the items that are not yet sold
+		owned_items = Item.query.filter_by(owner = current_user.id)	#query all the items owned by current logged in user
 		return render_template('market.html', items=items, purchase_form=purchase_form, selling_form = selling_form, title='Market', owned_items = owned_items)
 
 	
@@ -75,17 +77,17 @@ def market():
   
 @myapp_obj.route("/signup", methods=['GET', 'POST'])
 def signupPage():
-	form = RegistrationForm()
+	form = RegistrationForm()  #signup form from forms.py
 	if form.validate_on_submit():
-		user_to_create = User(username=form.username.data, email_address=form.email_address.data, password=form.password1.data)
+		user_to_create = User(username=form.username.data, email_address=form.email_address.data, password=form.password1.data)	#get data from the form user filled
 		db.session.add(user_to_create)
-		db.session.commit()
-		login_user(user_to_create)
-		flash(f'Account created successfully! You are now logged in as {user_to_create.username}', category='success')
-		return redirect(url_for('market'))
-	if form.errors != {}: #If there are no errors from the validations
+		db.session.commit()	#add it to database
+		login_user(user_to_create)	#login the user if signup is successfull
+		flash(f'Account created successfully! You are now logged in as {user_to_create.username}', category='success')	#flash success message
+		return redirect(url_for('market'))	#redirect to market after logging in
+	if form.errors != {}: #If there are errors in signing up
 		for err_msg in form.errors.values():
-				flash(f'There was an error with creating a user: {err_msg}', category='danger')
+				flash(f'There was an error with creating a user: {err_msg}', category='danger') #flash appropriate error message
 
 	return render_template('signup.html', form=form, title='Signup')
 
@@ -95,17 +97,12 @@ def signupPage():
 def profile():
 	if request.method == 'POST':
 		if request.form.get('deleteprofile') == 'Delete Profile':
-			
-
 			userid2 = request.form.get('userid2')
 			u = User.query.filter_by(id = userid2).first()
-
 			usercart = db.session.query(Cart).filter(Cart.userid == userid2).delete()
-
 			#db.session.delete(usercart)
 			db.session.delete(u)
 			db.session.commit()
-
 			flash('Profile Deleted!', category='success')
 			return redirect(url_for('logoutPage'))
 		if request.form.get('changepassword') == 'Change Password':
@@ -184,7 +181,7 @@ def search():
 @myapp_obj.route('/changepassword', methods=["GET", "POST"])
 def changepassword():
 	form = PasswordForm()
-	if form.validate_on_submit():
+	if form.validate_on_submit():	#check if submit is clicked
 		currentpass = form.currentpass.data
 		newpass = form.newpass.data 
 		userid2 = request.form.get('userid2')

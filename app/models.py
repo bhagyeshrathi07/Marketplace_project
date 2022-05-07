@@ -6,6 +6,7 @@ from flask_login import UserMixin
 def load_user(user_id):
 	return User.query.get(int(user_id))
 
+#User class in database with validators
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer(), primary_key=True)
 	username = db.Column(db.String(length=30), nullable=False, unique=True)
@@ -42,9 +43,9 @@ class User(db.Model, UserMixin):
 		return f'User {self.username}'
 
 
-
+#Item class in database with validators
 class Item(db.Model):
-	id = db.Column(db.Integer(), primary_key=True)
+	id = db.Column(db.Integer(), primary_key=True)	
 	name = db.Column(db.String(length=30), nullable=False, unique=True)
 	price = db.Column(db.Integer(), nullable=False)
 	description = db.Column(db.String(length=1024), nullable=False, unique=True)
@@ -62,7 +63,7 @@ class Item(db.Model):
 	def __repr__(self):
     		return f'Item {self.name}'
 
-
+#Cart class in database
 class Cart(db.Model):
 	id = db.Column(db.Integer(), primary_key=True)
 	userid = db.Column(db.Integer(), db.ForeignKey('user.id'))
