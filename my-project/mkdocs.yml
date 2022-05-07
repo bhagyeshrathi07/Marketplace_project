@@ -1,0 +1,5 @@
+site_name: BTW Marketplace
+site_url: https://BTW-Marketplace.com/
+nav:
+    - Home: index.md
+theme: readthedocs
