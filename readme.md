@@ -2,8 +2,8 @@
 
 # Important Libraries to Download (Type the commands in terminal)
 * make sure you have lates python and pip installed if not download it from: https://www.python.org/downloads/ OR go to terminal and type:
-    *Linux: sudo apt-get install python3
-    *Mac OS: brew install python (install brew form https://brew.sh/)
+    * Linux: sudo apt-get install python3
+    * Mac OS: brew install python (install brew form https://brew.sh/)
 * get pip by going to terminal and type: 
     * Linux/Mac OS: $ python -m ensurepip --upgrade
     * Windows: C:> py -m ensurepip --upgrade
