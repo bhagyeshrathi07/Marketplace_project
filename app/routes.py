@@ -154,14 +154,31 @@ def base():
 def search():
 	form = SearchForm()
 	searcheditems = Item.query
-	if form.validate_on_submit():
-		item_searched = form.searched.data
+	
+	
+	#if form.validate_on_submit():
+		#item_searched = form.searched.data
+	item_searched = request.form.get('searched')
 		#flash(item_searched)
-		#searcheditems = searcheditems.filter(Item.name.like('%' + item_searched + '%'))
-		searcheditems = Item.query.filter_by(name = item_searched).first()
+
+		#searcheditems = db.session.query(Item.name, Item.price).filter(Item.name == item_searched).all()
+	searcheditems = db.session.query(Item.name, Item.price, Item.id, Item.description).filter(Item.name.like('%' + item_searched + '%')).all()
 		#searcheditems = searcheditems.order_by(Item.name).all
 		#flash(searcheditems)
-		return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
+	if request.form.get('addtocartform') == 'Add to Cart':
+		flash('Item Added to Cart!', category='success')
+		#flash(request.form.get('userid2'))
+		userid2 = request.form.get('userid2')
+		itemid2 = request.form.get('itemid2')
+		#flash(request.form.get('itemid2'))
+		cartitem = Cart(userid=userid2, itemid=itemid2)
+		db.session.add(cartitem)
+		db.session.commit()
+			
+		
+	return render_template("search.html", form=form, item_searched = item_searched, searcheditems = searcheditems)
+	#return render_template("search.html", form=form)
+
 
 
 @myapp_obj.route('/changepassword', methods=["GET", "POST"])
@@ -176,7 +193,9 @@ def changepassword():
 			u.password = form.newpass.data
 			db.session.add(u)
 			db.session.commit()
-			flash("Your Password Has Been Changed")
+			flash("Your Password Has Been Changed", category='success')
 			return render_template("changepassword.html", form=form)
-		return render_template("changepassword.html", form=form)
+		else: 
+			flash("Incorrect Password", category='danger')
+			return render_template("changepassword.html", form=form)
 	return render_template("changepassword.html", form=form)
