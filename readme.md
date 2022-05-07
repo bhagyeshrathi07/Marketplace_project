@@ -1,4 +1,4 @@
-# Flask Marketplace
+# BTW Marketplace
 
 
 # Table of contents
@@ -14,7 +14,7 @@
 
 
 # Website info
-Flask Marketplace is designed for customers to buy and sell items.
+BTW Marketplace is designed for customers to buy and sell items.
 
 
 ## Instructions
