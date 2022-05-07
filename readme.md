@@ -3,7 +3,6 @@
 
 # Table of contents
 * [Website info](#website-info)
-* [Instructions](#instructions)
 * [Home](#home)
 * [Navigation bar](#navigation-bar)
 * [User profile](#user-profile)
@@ -54,9 +53,14 @@ or click "Checkout All" to purchase all items.
 
 
 ## Technologies
-Front End: Bootstrap, HTML & CSS
-Back End: Python, Flask, SQLite (SQLalchemy)
+Front End:
+* Bootstrap
+* HTML & CSS
 
+Back End:
+* Python
+* Flask
+* SQLite (SQLalchemy)
 
 
 ## Contributors
