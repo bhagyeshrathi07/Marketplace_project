@@ -1,9 +1,8 @@
-# Flask Marketplace
+# BTW Marketplace
 
 
 # Table of contents
 * [Website info](#website-info)
-* [Instructions](#instructions)
 * [Home](#home)
 * [Navigation bar](#navigation-bar)
 * [User profile](#user-profile)
@@ -15,7 +14,7 @@
 
 
 # Website info
-Flask Marketplace is designed for customers to buy and sell items.
+BTW Marketplace is designed for customers to buy and sell items.
 
 
 ## Instructions
@@ -54,9 +53,14 @@ or click "Checkout All" to purchase all items.
 
 
 ## Technologies
-Front End: Bootstrap, HTML & CSS
-Back End: Python, Flask, SQLite (SQLalchemy)
+Front End:
+* Bootstrap
+* HTML & CSS
 
+Back End:
+* Python
+* Flask
+* SQLite (SQLalchemy)
 
 
 ## Contributors

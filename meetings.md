@@ -70,18 +70,3 @@
 	b) Will work on finding items on the search bar.
 - Updated gantt chart, completed login and logout, create account and delete account, user profile, add and remove to cart, buy items, and add item to sell.
 
-###we have decided to meet in class every tuesday/thursday, along with extra meetings at home over the weekends
-
-
-
-
-### 2022-04-29 at 10:30
-- Who attended the meeting
-- Team updates (15min or less)
-  <Each team member gives an update of what they did from the last meeting and what they plan to do next. If they are stuck, bring it up here to see if others can help.>
-  - <name> worked on X. Will work on Y next. 
-
-- pair-programming (optional) (25 mins)
-  <- Pair program on one part of the project. Driver will be the person responsible for that requirement.>
-
-- Summarize group progress
