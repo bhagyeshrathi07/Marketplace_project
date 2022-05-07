@@ -1,8 +1,8 @@
 # BTW Marketplace
 
 # Table of contents
-* [Important Libraries to Download] (#important-libraries-to-download )
-* [How to Run] (#how-to-run)
+* [Important Libraries to Download](#important-libraries-to-download )
+* [How to Run](#how-to-run)
 * [Website info](#website-info)
 * [Home](#home)
 * [Navigation bar](#navigation-bar)
