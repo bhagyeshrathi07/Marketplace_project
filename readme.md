@@ -1,5 +1,27 @@
 # BTW Marketplace
 
+# Important Libraries to Download (Type the commands in terminal)
+* make sure you have lates python and pip installed if not download it from: https://www.python.org/downloads/ OR go to terminal and type:
+    *Linux: sudo apt-get install python3
+    *Mac OS: brew install python (install brew form https://brew.sh/)
+* get pip by going to terminal and type: 
+    * Linux/Mac OS: $ python -m ensurepip --upgrade
+    * Windows: C:> py -m ensurepip --upgrade
+* After doing above steps install flask and its libraries by typing in terminal following:
+    * pip install flask
+    * pip install flask-wtf flask-sqlalchemy flask-login flask-bcrypt
+
+# How To Run
+* To run the project: (Terminal)
+    * download the repository from: https://github.com/bhagyeshrathi07/Marketplace_project.git
+    * from terminal navigate into Marketplace_project folder 
+    * type in terminal : python3 run.py
+    * click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
+* To run the project: (IDE)
+    * on your ide open the project repository 
+    * navigate to Marketplace_project
+    * run run.py
+    * click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
 
 # Table of contents
 * [Website info](#website-info)
