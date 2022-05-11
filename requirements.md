@@ -31,6 +31,7 @@
 3. Create New Account
 4. Delete Account
 
+------------------------------------------------------------------------------------------------------------------------------
 
 5. Find item
 
@@ -57,8 +58,7 @@
   1. User searches for something that is not in stock or misspelled item
 	a. Displays a message that there is no available item or the item was misspelled
 
-
-
+------------------------------------------------------------------------------------------------------------------------------
 
 6. Remove item from cart
 - **Pre-condition:**
@@ -80,9 +80,7 @@
 - **Primary Postconditions:**                                     
   1. The product is removed form the users cart database and is not visible on the cart page anymore.
 
-
-
-
+------------------------------------------------------------------------------------------------------------------------------
 
 7. Add to cart
 - **Pre-condition:**
@@ -111,11 +109,8 @@
   
   1. If the item suddenly becomes out-of-stock (someone bought it just now) and user clicks add.
 	a. User gets a flash message 'Item is not available, please refresh the page'. 
-	
- 
 
-
-
+------------------------------------------------------------------------------------------------------------------------------
 
 8. User Profile
 - **Pre-condition:**
@@ -140,7 +135,7 @@
   1. User clicks on 'my profile' button but doesn't yet have a profile.
     a. User is then routed to sign up page.
 
-
+------------------------------------------------------------------------------------------------------------------------------
 
 9. Change account password
 - **Pre-condition:**
@@ -173,8 +168,7 @@
   2. User inputs invalid password.
      a. User is prompted to type valid password.
 
-
-
+------------------------------------------------------------------------------------------------------------------------------
 
 10. Add item to the market
 - **Pre-condition:**
