@@ -7,7 +7,7 @@
 5. Add to cart - Tejas
 6. *Add pictures for item - winson
 7. Find item - Tejas
-8. Sort by price - Tejas
+8. Change account password - Tejas
 9. Add item to seller store - Bhagyesh
 10. Buy item - Bhagyesh
 11. Remove item from cart - Tejas
@@ -18,31 +18,39 @@
 ## Non-functional Requirements
 
 1. *UI interactive interface
-2. *Multilingual support
-3. Mobile Responsive webpage 
-4. non-functional https://github.com/bhagyeshrathi07/Marketplace_project.git
+2. Usability - Easy to use basic marketplace website
+3. Mobile Responsive webpage - website adjusts itself according to the size of the window.
+4. Compatibility - works on all kinds of devices which can support chrome.
 
 
 
 ## Use Cases
 
+1. Login
+2. Logout
+3. Create New Account
+4. Delete Account
 
 
-1. Find item
+5. Find item
+
+- **Summary:**
+  1. This featture allows user to find the product by it's name.
+
 - **Pre-condition:**
-  1. The user typed the name of an item in the search bar.
+  1. The user is on the market page 
 
 - **Trigger:** 
-  1. The user clicked enter or text box with keyword 'search'.
+  1. The user entered the name of product in search bar and clicked 'search'.
 
 - **Primary Sequence:**
   
-  1. User clicks in the textbox.
-  2. User searches by name for an item they want.
-  3. User clicks on search or clicks enter on the keyboard.
+  1. User clicks in the search bar.
+  2. User searches by name for the product they want.
+  3. User clicks on search or clicks enter on the keyboard to initiate the search for the product.
 
 - **Primary Postconditions:**
-  1. The item the user searches up shows up or the item doesn't show up and displays a message for the user.
+  1. All the products are shown that match the name of the product user typed in search bar.
 
 - **Alternate Sequence:**
   
@@ -52,121 +60,151 @@
 
 
 
-2. Remove item from cart
+6. Remove item from cart
 - **Pre-condition:**
-  1. In the cart menu, the user can remove items that were added to the cart.
+  1. User should be logged in and on cart page, cart must have at least one product in it.
+
+- **Summary:**
+  1. This feature allows user to remove a product from their cart.
 
 - **Trigger:**
-  1. In the cart menu, the user can click remove on the item.
+  1. The user clicks 'remove from cart' button for the product they want to remove.
 
 - **Primary Sequence:**
 
-  1. Click on cart.
-  2. Brings user to cart menu where there's a list of items the user added to cart.
-  3. Next to each item, there is a remove option.
-  4. The user can click remove to remove the item from the cart.
+  1. User clicks on the 'remove form cart' button for the product they want to remove.
+  2. User recieves a flash message saying product have been succesfully removed form the cart.
+  3. The product is removed form the users cart database.
+  4. The product is not visible on the cart page.
 
 - **Primary Postconditions:**                                     
-  1. After the user clicks remove, the item disappears from the cart menu.
-
-- **Alternate Sequence:**
-  
-  1. If there is no items in the cart.
-	a. Displays a message 'No items in cart'
-	b. No items mean no remove option.
+  1. The product is removed form the users cart database and is not visible on the cart page anymore.
 
 
 
 
-3. Add to cart
+
+7. Add to cart
 - **Pre-condition:**
-  1. After the user searches for an item and there is an available item, the user can add the item to their cart.
+  1. User should be logged in and on market page.
+
+- **Summary:**
+  1. This feature allows user to add products to their cart.
 
 - **Trigger:**
-  1. The user can click on add after finding an item.
+  1. The user finds product they want to buy and clicks add to cart button to the right of the product.
 
 - **Primary Sequence:**
 
-  1. User clicks add next to the item.
-  2. The item will appear in the cart.
+  1. User clicks 'add to cart' button next to the product he wants to buy.
+  2. User gets flash message saying product has successfully been added to the cart.
+  3. Server recieves the request to add product to the current logged in users cart.
+  4. The product is added to the current users cart on the database.
+  5. User can see the product on their cart page.
 
 - **Primary Postconditions:**                                     
-  1. The user adds the item into the cart, and the item appears in the cart menu. If item becomes unavailable, the item is not added to cart.
+  1. Server recieves the request to add product to the current logged in users cart.
+  2. The product is added to the current users cart on the database.
+  3. User can see the product on their cart page.
 
 - **Alternate Sequence:**
   
   1. If the item suddenly becomes out-of-stock (someone bought it just now) and user clicks add.
-	a. Displays a message 'Item is not available, please refresh the page'. 
+	a. User gets a flash message 'Item is not available, please refresh the page'. 
+	
+ 
 
 
 
 
-4. User Profile
+8. User Profile
 - **Pre-condition:**
-  1. There is a button called 'my profile'
+  1. User should already have an account, should be logged into the account.
+
+- **Summary:**
+  1. This feature allows user to see his profile and make changes like delete account and change password.
 
 - **Trigger:**
-  1. User clicks on my profile button  
+  1. User clicks on my profile button.  
 
 - **Primary Sequence:**
 
-  1. User clicks 'my profile' button.
-  2. His name and profile informatin pops up.
+  1. User logs into their account.
+  2. User clicks on my profile button.
 
 - **Primary Postconditions:**                                     
-  1. Page shows user information
+  1. User gets navigated to page where he can see his profile information as well as delete account and change password option.
 
 - **Alternate Sequence:**
   
   1. User clicks on 'my profile' button but doesn't yet have a profile.
-    a. New page with sign up button pops up.
+    a. User is then routed to sign up page.
 
 
 
-5. Sort by price
+9. Change account password
 - **Pre-condition:**
-  1. After searching for an available item, there will be an option to sort by price.
+  1. User must be logged in and on their profile page.
+
+- **Summary:**
+  1. This feature allows user to change their account password. 
 
 - **Trigger:**
-  1. The user clicks 'sort-by-price'.
+  1. The user clicks 'change password' button on profile page.
 
 - **Primary Sequence:**
 
-  1. User searches for an available item.
-  2. Items appear first by recency.
-  3. User clicks sort-by-price.
-  4. Items get sorted from least to greatest.
-  5. User clicks sort-by-price again.
-  6. Items are now sorted from greatest to least.
+  1. The user clicks 'change password' button on profile page.
+  2. Prompt is popped up for user to type old and new password. 
+  3. User types current and new password and clicks submit. 
+  4. User receives a flash message saying that his password has been changed.
+  6. The server recieves the change password request. 
+  7. The password is changed on the database for the current logged in user.
 
 - **Primary Postconditions:**                                     
-  1. After clicking sort-by-price, the items will be sorted from least to most expensive and will alternate if clicked on again.
+  1. User types current and new password and clicking submit.
+  2. The server recieves the change password request. 
+  3. The password is changed on the database for the current logged in user. 
+  4. User sees a flash message that their password has been changed.
 
 - **Alternate Sequence:**
-  1. If there is only one item, sort-by-price will do nothing.
+  1. User inputs incorrect current password.
+     a. User sees a flash message saying the old password is incorrect.
+  2. User inputs invalid password.
+     a. User is prompted to type valid password.
 
 
 
 
-6. Add item to seller store
+10. Add item to the market
 - **Pre-condition:**
-  1. After login, the user goes to their profile page.
+  1. User should be logged in.
+
+- **Summary:**
+  1. User can add products to the market to sell. 
 
 - **Trigger:**
-  1. The user can click on sell-item on their profile page.
+  1. User clicks on 'sell product' button.
 
 - **Primary Sequence:**
 
-  1. After clicking sell-item, the user is asked to type the name and description of the item.
-  2. Add quantity of item.
-  3. Then the user is asked to enter a price for the item.
-  4. Next, upload a picture of the item.
-  5. Finally, click post to post the item on display.
+  1. User logs into their account.
+  2. User clicks 'sell product'.
+  3. User fills the name, price, description of the product.
+  4. User clicks submit.
+  5. Server recieves the information and stores it in database.
+  6. User is redirected to the market page.
+  7. The product user entered is visible on market to buy.
 
 - **Primary Postconditions:**                                     
-  1. The item is displayed onto the marketplace or the item is not displayed.
+  1. The product is stored on database and visible on market page for users to buy.
 
 - **Alternate Sequence:**
   
-  1. User keeps the form incomplete (doen't provide name/image/description etc)
-    a. prompt user to fill out all the information.
+  1. User logs into their account.
+  2. User clicks 'sell product'.
+  3. User keeps the form incomplete (doen't provide name/image/description etc) / does not input enough information
+  4. User clicks submit.
+  5. Error message is recieved on server side.
+  6. User sees a flash message with error.
+  7. User is prompted to enter all the required fields.
