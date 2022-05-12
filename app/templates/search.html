@@ -30,7 +30,7 @@ Search
                   <form action="/search" method="post">
                     <input type="hidden" name="userid2" value="{{current_user.id}}">
                     <input type="hidden" name="itemid2" value={{item.id}}>
-                    <input type="text" name="searched" value={{item_searched}}>
+                    <input type="hidden" name="searched" value={{item_searched}}>
                     <input type="submit" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" value="Add to Cart" name='addtocartform'/>
                   </form>
                 </td>
