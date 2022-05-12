@@ -15,29 +15,28 @@
 
 
 # Important Libraries to Download
-* Make sure you have latest python and pip installed if not download it from: https://www.python.org/downloads/ OR go to terminal and type:
+* Make sure you have latest python and pip installed. If not, download it from: https://www.python.org/downloads/ OR go to terminal and type:
     * Linux: sudo apt-get install python3
     * Mac OS: brew install python (install brew form https://brew.sh/)
 * Get pip by going to terminal and type: 
     * Linux/Mac OS: $ python -m ensurepip --upgrade
     * Windows: C:> py -m ensurepip --upgrade
-* After doing above steps install flask and its libraries by typing in terminal following:
+* After doing above steps, install flask and its libraries by typing in terminal following:
     * pip install flask
     * pip install flask-wtf flask-sqlalchemy flask-login flask-bcrypt
 
+
 # How To Run
-* To run the project: (Terminal)
+* To run the project: (in terminal)
     * download the repository from: https://github.com/bhagyeshrathi07/Marketplace_project.git
-    * from terminal navigate into Marketplace_project folder 
+    * from terminal, navigate into Marketplace_project folder 
     * type in terminal : python3 run.py
-    * click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
+    * left click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
 * To run the project: (IDE)
-    * on your ide open the project repository 
+    * on your ide, open the project repository 
     * navigate to Marketplace_project
     * run run.py
-    * click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
-
-
+    * left click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
 
 
 # Website info
@@ -76,8 +75,8 @@ or click "Checkout All" to purchase all items.
 
 
 ### Sell items
-After you buy item from market you will see owned items on the right section of the market page. To sell them click on the sell product button on owned items section and it will be sold after you confirm the sell.
-
+After you buy item from market you will see owned items on the right section of the market page. To sell them click on the sell product 
+button on owned items section and it will be sold after you confirm the sell.
 
 
 ## Technologies
