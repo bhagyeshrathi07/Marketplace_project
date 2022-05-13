@@ -116,10 +116,10 @@
 
 8. User Profile
 - **Pre-condition:**
-  1. User should already have an account, should be logged into the account.
+  1. User should be logged into their account.
 
 - **Summary:**
-  1. This feature allows user to see his profile and make changes like delete account and change password.
+  1. This feature allows user to see their profile and delete their account or change their password.
 
 - **Trigger:**
   1. User clicks on my profile button.  
@@ -130,12 +130,12 @@
   2. User clicks on my profile button.
 
 - **Primary Postconditions:**                                     
-  1. User gets navigated to page where he can see his profile information as well as delete account and change password option.
+  1. User gets navigated to page where they can see their profile information as well as delete account or change password options.
 
 - **Alternate Sequence:**
   
-  1. User clicks on 'my profile' button but doesn't yet have a profile.
-    a. User is then routed to sign up page.
+  1. User navigates to the profile page, but the user is not logged in.
+    a. So user is then routed to the login page.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
