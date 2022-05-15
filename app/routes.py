@@ -13,8 +13,8 @@ def loginPage():
 	form = LoginForm()
 	if form.validate_on_submit():	#check if submit is clicked
 		attempted_user = User.query.filter_by(username=form.username.data).first()
-		if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
-			login_user(attempted_user)
+		if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data): #if the username and password are correct
+			login_user(attempted_user) #then login the user session
 			flash(f'Success logging in, Logged in as: {attempted_user.username}', category='success')
 			return redirect(url_for('market'))
 		else:
@@ -38,11 +38,11 @@ def market():
 		if request.form.get('addtocartform') == 'Add to Cart':
 			flash('Item Added to Cart!', category='success')
 			#flash(request.form.get('userid2'))
-			userid2 = request.form.get('userid2')
+			userid2 = request.form.get('userid2') #pass the user's id and the id of the item to the form
 			itemid2 = request.form.get('itemid2')
 			#flash(request.form.get('itemid2'))
-			cartitem = Cart(userid=userid2, itemid=itemid2)
-			db.session.add(cartitem)
+			cartitem = Cart(userid=userid2, itemid=itemid2) #create a new item in cart class with these params
+			db.session.add(cartitem) #add item to database
 			db.session.commit()
 		
 		#purchase Item logic
@@ -96,15 +96,15 @@ def signupPage():
 @myapp_obj.route("/profilepage", methods=['GET', 'POST'])
 def profile():
 	if request.method == 'POST':
-		if request.form.get('deleteprofile') == 'Delete Profile':
+		if request.form.get('deleteprofile') == 'Delete Profile': #if the delete profile button is clicked
 			userid2 = request.form.get('userid2')
-			u = User.query.filter_by(id = userid2).first()
-			usercart = db.session.query(Cart).filter(Cart.userid == userid2).delete()
+			u = User.query.filter_by(id = userid2).first() #filter the User class for wherever the given userid is found
+			usercart = db.session.query(Cart).filter(Cart.userid == userid2).delete() #delete the cart for the user
 			#db.session.delete(usercart)
-			db.session.delete(u)
+			db.session.delete(u) #delete the previously found user
 			db.session.commit()
 			flash('Profile Deleted!', category='success')
-			return redirect(url_for('logoutPage'))
+			return redirect(url_for('logoutPage')) #flash and redirect
 		if request.form.get('changepassword') == 'Change Password':
 			return redirect(url_for('changepassword'))
 		else:
@@ -118,21 +118,18 @@ def profile():
 @login_required
 def cart():
 	userid2 = request.form.get('userid2')
-	itemdetails = list()
+	itemdetails = list() #special type of list for SQL items
 
-	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all():
-		itemdetails.append(eachitem)
+	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all(): #query for the information of items in users cart
+		itemdetails.append(eachitem) #add to the list created above, regular python list would not work.
 
 	if request.method == 'POST':
-		if request.form.get('removefromcartform') == 'Remove from Cart':
-			#flash('Item Removed from Cart!', category='success')
-            #flash(request.form.get('userid2'))
-			#userid2 = request.form.get('userid2')
-			#itemid2 = request.form.get('itemid2')
-			cartid2 = request.form.get('cartid2')
+		if request.form.get('removefromcartform') == 'Remove from Cart': #if remove from cart button is clicked
 
-			c = Cart.query.filter_by(id = cartid2).first()
-			db.session.delete(c)
+			cartid2 = request.form.get('cartid2') #get cardid from form
+
+			c = Cart.query.filter_by(id = cartid2).first() #filter the Cart class for that given id
+			db.session.delete(c) #and delete that item from that user's cart
 			db.session.commit()
 			return redirect(url_for('market'))
 		else:
@@ -182,12 +179,12 @@ def search():
 def changepassword():
 	form = PasswordForm()
 	if form.validate_on_submit():	#check if submit is clicked
-		currentpass = form.currentpass.data
+		currentpass = form.currentpass.data #get data fro both the newpass and the current pass
 		newpass = form.newpass.data 
 		userid2 = request.form.get('userid2')
-		u = User.query.filter_by(id = userid2).first()
-		if u.check_password_correction(currentpass):
-			u.password = form.newpass.data
+		u = User.query.filter_by(id = userid2).first() #find the user object in db
+		if u.check_password_correction(currentpass): #check if the users password is the same as the entered "currentpass"
+			u.password = form.newpass.data #override the current password in the db with the new one
 			db.session.add(u)
 			db.session.commit()
 			flash("Your Password Has Been Changed", category='success')
