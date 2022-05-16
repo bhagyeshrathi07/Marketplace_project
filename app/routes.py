@@ -1,4 +1,4 @@
-from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm, PasswordForm
+from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm, PasswordForm, ListItemForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
 from app.models import Item, User, Cart
@@ -193,3 +193,23 @@ def changepassword():
 			flash("Incorrect Password", category='danger')
 			return render_template("changepassword.html", form=form)
 	return render_template("changepassword.html", form=form)
+
+
+
+
+@myapp_obj.route("/list", methods=['GET', 'POST'])
+@login_required
+def list():
+	form = ListItemForm()		# listing form from forms.py
+	if form.validate_on_submit():
+		new_item = Item(name = form.name.data, price = form.price.data, description = form.description.data, owner = None)
+		db.session.add(new_item)
+		db.session.commit()
+		flash(f'Product {new_item.name} added to market!', category='success') #flash success message.
+		return redirect(url_for('list'))
+
+	if form.errors != {}: #If there are errors in signing up
+		for err_msg in form.errors.values():
+				flash(f'There was an error with listing the product on market: {err_msg}', category='danger') #flash appropriate error message
+	
+	return render_template('list_item.html', form = form, title='List')

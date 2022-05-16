@@ -1,6 +1,6 @@
 import email
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, DecimalField, IntegerField
 from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, DataRequired, Email
 from app.models import User
 
@@ -26,6 +26,14 @@ class RegistrationForm(FlaskForm):
 	password2 = PasswordField(label='Confirm Password', validators=[InputRequired(message="Password required"), EqualTo('password1', message="Passwords must match"), DataRequired()])
 	submit = SubmitField(label='Submit')
 
+#Listing form
+class ListItemForm(FlaskForm):
+	name = StringField(label='Product Name', validators=[InputRequired(message="Product name is required!"), Length(min=4, max=32, message="Product name must be between 4 and 32 characters"), DataRequired()])
+	description = StringField(label='Product Description', validators=[InputRequired(message="Product description is required!"), Length(min=4, max=128, message="Product description must be between 4 and 128 characters"), DataRequired()])
+	price = IntegerField(label='Product Price', validators=[InputRequired(message='Product price is required!'),])
+	submit = SubmitField('List Product!')		#Submit button for listing
+
+
 #Login form
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[InputRequired(message="Username required"), DataRequired()])
@@ -34,7 +42,7 @@ class LoginForm(FlaskForm):
 
 #Purchasing form
 class PurchaseItemForm(FlaskForm):
-	submit = SubmitField(label='Purchse Product!')	#Submit button for purchasing
+	submit = SubmitField(label='Purchase Product!')	#Submit button for purchasing
 
 #Selling form
 class SellItemForm(FlaskForm):
