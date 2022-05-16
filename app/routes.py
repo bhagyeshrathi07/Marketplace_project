@@ -118,7 +118,7 @@ def profile():
 @login_required
 def cart():
 	userid2 = request.form.get('userid2')
-	itemdetails = list() #special type of list for SQL items
+	itemdetails = [] 
 
 	for eachitem in db.session.query(Cart.id,Item.id,Item.name,Item.price).filter(Item.id == Cart.itemid, Cart.userid == userid2).all(): #query for the information of items in users cart
 		itemdetails.append(eachitem) #add to the list created above, regular python list would not work.

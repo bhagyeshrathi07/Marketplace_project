@@ -18,5 +18,5 @@ from app import routes
 
 
 #RUN ONCE AND THEN COMMENT FOLLOWING CODE:
-db.drop_all()
-db.create_all()
+#db.drop_all()
+#db.create_all()
