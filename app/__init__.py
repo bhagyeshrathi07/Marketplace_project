@@ -15,3 +15,8 @@ myapp_obj.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db' #SQLlite con
 myapp_obj.config['SECRET_KEY'] = '032acac8f265a4205baaa601'      #DO NOT CHANGE THIS HEXADECIMAL SECRET_KEY
 
 from app import routes
+
+
+#RUN ONCE AND THEN COMMENT FOLLOWING CODE:
+db.drop_all()
+db.create_all()

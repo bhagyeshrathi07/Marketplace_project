@@ -48,7 +48,7 @@ class Item(db.Model):
 	id = db.Column(db.Integer(), primary_key=True)	
 	name = db.Column(db.String(length=30), nullable=False, unique=True)
 	price = db.Column(db.Integer(), nullable=False)
-	description = db.Column(db.String(length=1024), nullable=False, unique=True)
+	description = db.Column(db.String(length=1024), nullable=True)
 	owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
 	def buy(self, user):
