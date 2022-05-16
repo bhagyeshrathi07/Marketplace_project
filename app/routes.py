@@ -208,7 +208,7 @@ def list():
 		new_item = Item(name = form.name.data, price = form.price.data, description = form.description.data, owner = None)
 		db.session.add(new_item)
 		db.session.commit()
-		flash(f'Product {new_item.name} added to market!', category='success')
+		flash(f'Product {new_item.name} added to market!', category='success') #flash success message.
 		return redirect(url_for('list'))
 
 	if form.errors != {}: #If there are errors in signing up

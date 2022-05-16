@@ -26,7 +26,7 @@ class RegistrationForm(FlaskForm):
 	password2 = PasswordField(label='Confirm Password', validators=[InputRequired(message="Password required"), EqualTo('password1', message="Passwords must match"), DataRequired()])
 	submit = SubmitField(label='Submit')
 
-#Lising form
+#Listing form
 class ListItemForm(FlaskForm):
 	name = StringField(label='Product Name', validators=[InputRequired(message="Product name is required!"), Length(min=4, max=32, message="Product name must be between 4 and 32 characters"), DataRequired()])
 	description = StringField(label='Product Description', validators=[InputRequired(message="Product description is required!"), Length(min=4, max=128, message="Product description must be between 4 and 128 characters"), DataRequired()])
