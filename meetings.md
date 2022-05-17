@@ -64,9 +64,21 @@
 	b) Will work on the UI of the website.
 -Winson
 	a) Updated meetings.md.
-	b) Will work on mkdocs and 
+	b) Will work on mkdocs and readme.
 -Tejas
 	a) Finished implementing funtionality for adding to and removing from cart, 
 	b) Will work on finding items on the search bar.
 - Updated gantt chart, completed login and logout, create account and delete account, user profile, add and remove to cart, buy items, and add item to sell.
 
+###2022-05-16 at 22:00
+-Everyone attended the meeting (online)
+-Bhagyesh
+	a) Finished adding seller's page.
+	b) Last thing to do are tests.
+-Winson
+	a) Finished updating mkdocs and readme.
+	b) Last thing to do are tests.
+-Tejas
+	a) Finished search bar and adding images to items.
+	b) Last thing to do are tests.
+- Mostly discussed what we needed to do for the remainder of the project. Most functionalities are done, just need to work on adding test.
