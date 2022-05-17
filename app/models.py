@@ -50,6 +50,8 @@ class Item(db.Model):
 	price = db.Column(db.Integer(), nullable=False)
 	description = db.Column(db.String(length=1024), nullable=True)
 	owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+	image = db.Column(db.String(20), nullable=False, default='default.jpg')
+	filename = db.Column(db.String(length=30), nullable=False)
 
 	def buy(self, user):
 		self.owner = user.id
