@@ -24,6 +24,7 @@
 * After doing above steps, install flask and its libraries by typing in terminal following:
     * pip install flask
     * pip install flask-wtf flask-sqlalchemy flask-login flask-bcrypt
+    * pip install email_validator
 
 
 # How To Run
