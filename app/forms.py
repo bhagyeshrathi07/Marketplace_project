@@ -1,6 +1,7 @@
 import email
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, DecimalField, IntegerField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, PasswordField, SubmitField, DecimalField, IntegerField, FileField
 from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, DataRequired, Email
 from app.models import User
 
@@ -31,6 +32,7 @@ class ListItemForm(FlaskForm):
 	name = StringField(label='Product Name', validators=[InputRequired(message="Product name is required!"), Length(min=4, max=32, message="Product name must be between 4 and 32 characters"), DataRequired()])
 	description = StringField(label='Product Description', validators=[InputRequired(message="Product description is required!"), Length(min=4, max=128, message="Product description must be between 4 and 128 characters"), DataRequired()])
 	price = IntegerField(label='Product Price', validators=[InputRequired(message='Product price is required!'),])
+	image = FileField(label='Upload Image', validators=[FileAllowed(['png', 'jpg'])])
 	submit = SubmitField('List Product!')		#Submit button for listing
 
 

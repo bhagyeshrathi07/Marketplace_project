@@ -15,7 +15,7 @@ Sell
               <div class="mb-md-5 mt-md-4 pb-5">
                   <h2 class="shadow-lg p-3 mb-5 bg-body rounded" class="text-uppercase text-center mb-5">Sell Product</h2>
 
-                  <form method="POST" class="form-register" style="color:white">
+                  <form method="POST" class="form-register" style="color:white" enctype="multipart/form-data">
                       {{ form.hidden_tag() }}
 
                       {{ form.name(class="shadow-lg p-3 mb-2 form-control", placeholder="Product name") }}
@@ -30,6 +30,13 @@ Sell
                       {{ form.price.label() }}
                       <br> <br>
                        
+                      {{ form.image(class="shadow-lg p-3 mb-2 form-control",
+                      placeholder="Image") }}
+                      {{ form.image.label() }}
+
+                                            
+                      <br> <br>
+
                       <div class="d-flex justify-content-center">
                         {{ form.submit(class="shadow-lg p-2 mb-2 bg-body btn btn-light btn-lg px-5") }}
                       </div>

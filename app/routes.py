@@ -1,9 +1,10 @@
 from app.forms import RegistrationForm, LoginForm, PurchaseItemForm, SellItemForm, SearchForm, PasswordForm, ListItemForm
 from flask import render_template, redirect, url_for, request, flash
 from app import myapp_obj, db
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from app.models import Item, User, Cart
 from flask_login import login_user, logout_user, login_required, current_user
-
+import os
 @myapp_obj.route("/", methods=['GET', 'POST'])
 def home():
 	return render_template('home.html', title='Home')
@@ -33,18 +34,21 @@ def logoutPage():
 def market():
 	purchase_form = PurchaseItemForm()  # purchase form from forms.py
 	selling_form = SellItemForm()		# sell form from forms.py
+	userid2 = request.form.get('userid2') #pass the user's id and the id of the item to the form
+	itemid2 = request.form.get('itemid2')
+
+
 	if request.method == 'POST':
     	#add to cart logic
 		if request.form.get('addtocartform') == 'Add to Cart':
 			flash('Item Added to Cart!', category='success')
 			#flash(request.form.get('userid2'))
-			userid2 = request.form.get('userid2') #pass the user's id and the id of the item to the form
-			itemid2 = request.form.get('itemid2')
 			#flash(request.form.get('itemid2'))
 			cartitem = Cart(userid=userid2, itemid=itemid2) #create a new item in cart class with these params
 			db.session.add(cartitem) #add item to database
 			db.session.commit()
 		
+
 		#purchase Item logic
 		purchased_item = request.form.get('purchased_item')
 		p_item_obj = Item.query.filter_by(name = purchased_item).first()  
@@ -68,6 +72,9 @@ def market():
 
 	if request.method == 'GET':
 		items = Item.query.filter_by(owner=None) #query all the items that are not yet sold
+
+
+
 		owned_items = Item.query.filter_by(owner = current_user.id)	#query all the items owned by current logged in user
 		return render_template('market.html', items=items, purchase_form=purchase_form, selling_form = selling_form, title='Market', owned_items = owned_items)
 
@@ -149,22 +156,16 @@ def search():
 	form = SearchForm()
 	searcheditems = Item.query
 	
-	
-	#if form.validate_on_submit():
-		#item_searched = form.searched.data
 	item_searched = request.form.get('searched')
-		#flash(item_searched)
 
-		#searcheditems = db.session.query(Item.name, Item.price).filter(Item.name == item_searched).all()
 	searcheditems = db.session.query(Item.name, Item.price, Item.id, Item.description).filter(Item.name.like('%' + item_searched + '%')).all()
-		#searcheditems = searcheditems.order_by(Item.name).all
-		#flash(searcheditems)
+
 	if request.form.get('addtocartform') == 'Add to Cart':
 		flash('Item Added to Cart!', category='success')
-		#flash(request.form.get('userid2'))
+
 		userid2 = request.form.get('userid2')
 		itemid2 = request.form.get('itemid2')
-		#flash(request.form.get('itemid2'))
+
 		cartitem = Cart(userid=userid2, itemid=itemid2)
 		db.session.add(cartitem)
 		db.session.commit()
@@ -179,7 +180,7 @@ def search():
 def changepassword():
 	form = PasswordForm()
 	if form.validate_on_submit():	#check if submit is clicked
-		currentpass = form.currentpass.data #get data fro both the newpass and the current pass
+		currentpass = form.currentpass.data #get data for both the newpass and the current pass
 		newpass = form.newpass.data 
 		userid2 = request.form.get('userid2')
 		u = User.query.filter_by(id = userid2).first() #find the user object in db
@@ -196,13 +197,27 @@ def changepassword():
 
 
 
+def save_image(picture_file):
+	#picture_name = picture_file.filename
+	picture_path = os.path.join(app.root_path, 'static', picture_name)
+	picture_file.save(picture_path)
+	return picture_name
+
 
 @myapp_obj.route("/list", methods=['GET', 'POST'])
 @login_required
 def list():
 	form = ListItemForm()		# listing form from forms.py
 	if form.validate_on_submit():
-		new_item = Item(name = form.name.data, price = form.price.data, description = form.description.data, owner = None)
+		pic = form.image.data #the picture uploaded in sell item form
+		filename = pic.filename #the picture's filename
+		#flash(filename + "uploaded")
+		#mimetype = pic.mimetype
+		#image_file = save_image(form.image.data)
+		picture_path = os.path.join(myapp_obj.root_path, 'static', filename) #adding and saving the picture to local
+		pic.save(picture_path)
+		#flash(myapp_obj.root_path)
+		new_item = Item(name = form.name.data, price = form.price.data, description = form.description.data, owner = None, image = pic.read(), filename = filename) #creating a new db object with data
 		db.session.add(new_item)
 		db.session.commit()
 		flash(f'Product {new_item.name} added to market!', category='success') #flash success message.

@@ -31,6 +31,8 @@ Market
                 <td>${{ item.price }}</td>
                 <td>{{ item.description }}</td>
                 <td>
+                  <img src="../static/{{item.filename}}" width="75" height="75">
+                <td>
                   <button type="button" class="shadow-lg p-2 mb-0 bg-body rounded btn btn-outline-light" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">More Info</button>
                 </td>
                 <td>
