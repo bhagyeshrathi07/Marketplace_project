@@ -196,14 +196,6 @@ def changepassword():
 	return render_template("changepassword.html", form=form)
 
 
-
-def save_image(picture_file):
-	#picture_name = picture_file.filename
-	picture_path = os.path.join(app.root_path, 'static', picture_name)
-	picture_file.save(picture_path)
-	return picture_name
-
-
 @myapp_obj.route("/list", methods=['GET', 'POST'])
 @login_required
 def list():
