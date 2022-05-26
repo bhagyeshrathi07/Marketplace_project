@@ -14,8 +14,8 @@
 * [Technologies](#technologies)
 * [Contributors](#contributors)
 
-#Setup/Run
-*In Project root directory on terminal do, <code> python -m pip install -r requirements.txt </code>. Then run project using python3 <code>run.py</code>.
+# Setup/Run
+* In Project root directory on terminal do, <code> python -m pip install -r requirements.txt </code>. Then run project using python3 <code>run.py</code>.
 
 # Important Libraries to Download
 * Make sure you have latest python and pip installed. If not, download it from: https://www.python.org/downloads/ OR go to terminal and type:
