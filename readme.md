@@ -39,7 +39,10 @@
 * To run the project: (IDE)
     * on your ide, open the project repository 
     * navigate to Marketplace_project
-    * run run.py
+    * create virtual enviornment: python3 -m venv venv
+    * activate virtual enviornment: source venv/bin/activate
+    * install dependencies from requirements.txt: pip install -r requirements.txt
+    * run python3 run.py
     * left click on http://127.0.0.1:5000/ (while pressing ctrl or cmd)
 
 
